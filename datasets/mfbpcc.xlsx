@@ -1,0 +1,584 @@
+	Cellular components	Biological processes	Molecular functions
+			
+		NAME	
+		regulation of gene expression by genetic imprinting	
+		GO ID	
+		GO:0006349	
+		Score	
+		8.92	
+		Affiliating Genes	
+		CTCF IGF2 KCNQ1 ZFP57	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	NAME	NAME	NAME
+	plasma membrane	transport	catalytic activity
+	extracellular exosome	leukocyte migration	neutral amino acid transmembrane transporter activity
+	basolateral plasma membrane	L-amino acid transport	antiporter activity
+	integral component of plasma membrane	L-alpha-amino acid transmembrane transport	basic amino acid transmembrane transporter activity
+	GO ID	cellular amino acid biosynthetic process	peptide antigen binding
+	GO:0005886	GO ID	GO ID
+	GO:0070062	GO:0006810	GO:0003824
+	GO:0016323	GO:0050900	GO:0015175
+	GO:0005887	GO:0015807	GO:0015297
+	SCORE	GO:1902475	GO:0015174
+	9.8	GO:0008652	GO:0042605
+	9.63	Score	Score
+	9.13	9.95	9.58
+	9.1	9.77	9.5
+	Affiliating Genes	9.56	9.46
+	SLC3A1 SLC3A2 SLC7A2 SLC7A5 SLC7A6 SLC7A7	9.55	9.43
+	ASL ASS1 SLC3A1 SLC3A2 SLC7A5 SLC7A8	9.52	9.37
+	SLC7A6 SLC7A7 SLC7A8	Affiliating Genes	Affiliating Genes
+	SLC3A1 SLC7A2 SLC7A5 SLC7A6 SLC7A7 SLC7A8	SLC3A1 SLC3A2 SLC7A2 SLC7A5 SLC7A6 SLC7A7	ASL SLC3A1 SLC3A2
+		SLC3A2 SLC7A5 SLC7A6 SLC7A7 SLC7A8	SLC3A2 SLC7A5 SLC7A8
+		SLC7A5 SLC7A6 SLC7A7 SLC7A8	SLC7A5 SLC7A6 SLC7A7 SLC7A8
+		SLC3A2 SLC7A5 SLC7A6 SLC7A7 SLC7A8	SLC3A1 SLC7A2 SLC7A7
+		ASL ASS1	SLC7A5 SLC7A8
+			
+			
+	NAME	NAME	NAME
+	mitochondrial inner membrane	heme biosynthetic process	lyase activity
+	mitochondrion	tetrapyrrole biosynthetic process	5-aminolevulinate synthase activity
+	GO ID	response to lead ion	GO ID
+	GO:0005743	erythrocyte differentiation	GO:0016829
+	GO:0005739	protoporphyrinogen IX biosynthetic process	GO:0003870
+	SCORE	biosynthetic process	SCORE
+	9.26	GO ID	9.02
+	9.17	GO:0006783	8.96
+	 Affiliating Genes	GO:0033014	 Affiliating Genes
+	ALAS2 CPOX FECH PPOX	GO:0010288	ALAD FECH PCBD1 UROD UROS
+	ALAS1 ALAS2 CPOX FECH LIG3 PPOX	GO:0030218	ALAS1 ALAS2
+		GO:0006782	
+		GO:0009058	
+		SCORE	
+		9.81	
+		9.65	
+		9.58	
+		9.56	
+		9.56	
+		9.55	
+		Affiliating Genes	
+		ALAD ALAS1 ALAS2 CPOX FECH HMBS	
+		ALAD ALAS1 ALAS2 HMBS UROS	
+		ALAD CPOX FECH	
+		ALAS2 GATA1	
+		ALAD ALAS1 ALAS2 CPOX HMBS PPOX	
+		ALAS1 ALAS2	
+			
+	NAME	NAME	
+	bicellular tight junction	regulation of type I interferon-mediated signaling pathway	
+	GO ID	GO ID	
+	GO:0005923	GO:0060338	
+	Score	Score	
+	8.62	8.62	
+	Affiliating Genes	Affiliating Genes	
+	JAM3 OCLN	IFNA1 USP18	
+			
+			
+	NAME	NAME	
+	lysosome	lipid metabolic process	
+	lysosomal membrane	glycosphingolipid metabolic process	
+	lysosomal lumen	sphingolipid metabolic process	
+	GO ID	GO ID	
+	GO:0005764	GO:0006629	
+	GO:0005765	GO:0006687	
+	GO:0043202	GO:0006665	
+	Score	Score	
+	9.16	9.16	
+	8.96	8.96	
+	8.62	8.62	
+	Affiliating Genes	Affiliating Genes	
+	GBA PSAP	GBA PSAP	
+	GBA PSAP	GBA PSAP	
+	GBA PSAP	GBA PSAP	
+			
+	Name	Name	Name
+	late endosome	transport	cation transmembrane transporter activity
+	GO ID	ion transport	metal ion transmembrane transporter activity
+	GO:0005770	transmembrane transport	zinc ion transmembrane transporter activity
+	Score	cation transmembrane transport	GO ID
+	8.62	cation transport	GO:0008324
+	Affiliating Genes	GO ID	GO:0046873
+	SLC30A2 SLC30A4	GO:0006810	GO:0005385
+		GO:0006811	Score
+		GO:0055085	9.16
+		GO:0098655	8.96
+		GO:0006812	8.92
+		Score	Affiliating Genes
+		9.88	SLC30A2 SLC30A4
+		9.73	SLC39A4 SLC39A5
+		9.67	SLC30A2 SLC30A4 SLC39A4 SLC39A5
+		9.51	
+		9.49	
+		Affiliating Genes	
+		ALB SLC30A2 SLC30A4 SLC39A4 SLC39A5	
+		SLC30A2 SLC30A4 SLC39A4 SLC39A5	
+		SLC30A2 SLC30A4 SLC39A4 SLC39A5	
+		SLC30A2 SLC30A4	
+		SLC30A2 SLC30A4	
+			
+	NAME	NAME	NAME
+	extracellular space	response to drug	oxidoreductase activity
+	secretory granule	inflammatory response	cytokine activity
+	phagolysosome	cellular response to oxidative stress	heme binding
+	NADPH oxidase complex	cell redox homeostasis	phosphatidylinositol binding
+	GO ID	cellular response to mechanical stimulus	electron carrier activity
+	GO:0005615	GO ID	GO ID
+	GO:0030141	GO:0042493	GO:0016491
+	GO:0032010	GO:0006954	GO:0005125
+	GO:0043020	GO:0034599	GO:0020037
+	SCORE	GO:0045454	GO:0035091
+	9.76	GO:0071260	GO:0009055
+	9.43	SCORE	SCORE
+	9.13	9.95	9.87
+	9.1	9.95	9.67
+	Affiliating Genes	9.85	9.65
+	CAT CLEC11A CSF2 CSF3 IFNG IL1B	9.83	9.58
+	CYBA IL1B MPO	9.8	9.55
+	NCF1 NCF2 NCF4	Affiliating Genes	Affiliating Genes
+	CYBA CYBB NCF1 NCF2 NCF4 NOX1	CAT CYBA CYBB IFNG MT-CYB	CAT CYBA CYBB DECR1 MPO MT-CYB
+		CYBA CYBB IL1B NOX1 RAC1TLR9	CSF2 CSF3 IFNG IL1B
+		CAT CYBA CYBB NCF1 NCF2NCF4	CAT CYBA CYBB HBG2 MPO
+		CYBA CYBB NCF1 NCF2 NCF4	NCF1 NCF1C NCF4
+		CYBA IL1B RAC1	CYBA CYBB MT-CYB NCF1 NCF2
+			
+			
+	Name	NAME	NAME
+	cytosol	metabolic process	metal ion binding
+	GO ID	L-phenylalanine catabolic process	GO ID
+	GO:0005829	cellular respiration	GO:0046872
+	Score	aromatic amino acid family metabolic process	Score
+	9.1	tyrosine catabolic process	9.1
+	Affiliating Genes	GO ID	Affiliating Genes
+	AFP ALAD CYCS FAH GSTZ1 HPD	GO:0008152	AFP ALAD CYCS FAH HPD SLC25A13
+		GO:0006559	
+		GO:0045333	
+		GO:0009072	
+		GO:0006572	
+		Score	
+		9.5	
+		9.33	
+		9.26	
+		9.13	
+		8.8	
+		Affiliating Genes	
+		ALAD FAH GSTZ1	
+		FAH GSTZ1 HPD	
+		CYCS SLC25A13	
+		FAH GSTZ1 HPD	
+		FAH GSTZ1 HPD	
+			
+	NAME	NAME	NAME
+	lysosome	pigmentation	Rab GTPase binding
+	photoreceptor outer segment	positive regulation of exocytosis	GO ID
+	exocytic vesicle	melanosome transport	GO:0017137
+	late endosome	melanocyte differentiation	Score
+	Weibel-Palade body	natural killer cell degranulation	8.92
+	GO ID	melanosome localization	Affiliating Genes
+	GO:0005764	exocytosis	MLPH MYO5A UNC13B UNC13D
+	GO:0001750	GO ID	
+	GO:0070382	GO:0043473	
+	GO:0005770	GO:0045921	
+	GO:0033093	GO:0032402	
+	Score	GO:0030318	
+	9.43	GO:0043320	
+	9.32	GO:0032400	
+	9.16	GO:0006887	
+	9.13	Score	
+	8.62	9.43	
+	Affiliating Genes	9.4	
+	MYO5A RAB27A UNC13D	9.37	
+	MYO5A RAB27A	9.32	
+	RAB27A UNC13D	9.26	
+	MYO5A RAB27A UNC13D	9.16	
+	RAB27A UNC13D	9.02	
+		Affiliating Genes	
+		MYO5A RAB27A	
+		RAB27A UNC13D	
+		MYO5A RAB27A	
+		MYO5A RAB27A	
+		RAB27A UNC13D	
+		MYO5A RAB27A	
+		CCL5 MYO5A RAB27A UNC13B UNC13D	
+			
+			
+	NAME	NAME	NAME
+	peroxisome	protein transport	receptor binding
+	integral component of peroxisomal membrane	neuron migration	protein C-terminus binding
+	peroxisomal matrix	fatty acid beta-oxidation	enzyme binding
+	peroxisomal membrane	peroxisome organization	"ATPase activity, coupled"
+	membrane	fatty acid beta-oxidation using acyl-CoA oxidase	GO ID
+	GO ID	GO ID	GO:0005102
+	GO:0005777	GO:0015031	GO:0008022
+	GO:0005779	GO:0001764	GO:0019899
+	GO:0005782	GO:0006635	GO:0042623
+	GO:0005778	GO:0007031	Score
+	GO:0016020	GO:0033540	9.46
+	Score	Score	9.43
+	9.77	9.92	9.26
+	9.63	9.67	8.62
+	9.56	9.65	Affiliating Genes
+	9.36	9.61	CAT F2R HSD17B4 PIPOX
+	10.17	9.51	PEX1 PEX12 PEX6
+	Affiliating Genes	Affiliating Genes	ABCD1 CAT PEX5 PEX7
+	ABCD1 CAT HSD17B4 PEX1 PEX10 PEX12	BCAP31 PEX1 PEX13 PEX5 PEX7	PEX1 PEX6
+	ABCD1 PEX10 PEX12 PEX13 PEX2 PEX3	PEX13 PEX5 PEX7	
+	CAT HSD17B4 PEX7 PIPOX	ABCD1 HSD17B4 PEX2 PEX5 PEX7	
+	ABCD1 CAT HSD17B4 PEX1 PEX10 PEX12	ABCD1 PEX1 PEX10 PEX12 PEX2 PEX3	
+	ABCD1 BCAP31 CAT F2R HSD17B4 PEX1	ABCD1 HSD17B4	
+			
+	NAME	NAME	NAME
+	cytosol	metabolic process	catalytic activity
+	ficolin-1-rich granule lumen	protein phosphorylation	transferase activity
+	secretory granule lumen	carbohydrate metabolic process	carbohydrate binding
+	inclusion body	neutrophil degranulation	calmodulin binding
+	GO ID	generation of precursor metabolites and energy	"hydrolase activity, hydrolyzing O-glycosyl compounds"
+	GO:0005829	glycogen biosynthetic process	"transferase activity, transferring glycosyl groups"
+	GO:1904813	GO ID	AMP binding
+	GO:0034774	GO:0008152	GO ID
+	GO:0016234	GO:0006468	GO:0003824
+	Score	GO:0005975	GO:0016740
+	9.77	GO:0043312	GO:0030246
+	9.43	GO:0006091	GO:0005516
+	9.33	GO:0005978	GO:0004553
+	9.32	Score	GO:0016757
+	Affiliating Genes	9.91	GO:0016208
+	AGL GBE1 GYG1 GYS1 GYS2 PFKM	9.85	Score
+	AGL GYG1 PYGL	9.81	9.81
+	AGL GYG1 PYGL	9.8	9.81
+	AGL GYS1	9.8	9.76
+		9.73	9.73
+		Affiliating Genes	9.52
+		AGL GAA GYS1 GYS2 PFKM PYGL	9.5
+		PHKA1 PHKA2 PHKB PHKG2 PRKAG2	9.49
+		AGL GAA GBE1 PHKA1 PHKA2 PHKB	Affiliating Genes
+		AGL GAA GYG1 PYGL	GAA PFKM PYGL PYGM
+		GBE1 GYS2 PHKA1 PHKA2 PHKB PHKG2	AGL GBE1 GYG1 GYS1 GYS2 PFKM
+		AGL GBE1 GYG1 GYS1 GYS2 PHKG2	AGL GAA GBE1 PYGL
+			PHKA1 PHKA2 PHKB PHKG2
+			GAA GBE1
+			AGL GBE1 GYG1 GYS1 GYS2 PYGL
+			PRKAG2 PYGL
+			
+	NAME	NAME	NAME
+	mitochondrial matrix	tRNA aminoacylation for protein translation	ATP binding
+	mitochondrion	mitochondrial translational elongation	RNA binding
+	GO ID	translational elongation	nucleotide binding
+	GO:0005759	tRNA aminoacylation	tRNA binding
+	GO:0005739	translation	translation elongation factor activity
+	Score	GO ID	"ligase activity, forming aminoacyl-tRNA and related compounds"
+	9.26	GO:0006418	ligase activity
+	9.17	GO:0070125	aminoacyl-tRNA ligase activity
+	Affiliating Genes	GO:0006414	GO ID
+	EARS2 FARS2 GFM1 TSFM	GO:0043039	GO:0005524
+	AARS2 AIFM1 EARS2 FARS2 GFM1 TSFM	GO:0006412	GO:0003723
+		Score	GO:0000166
+		9.33	GO:0000049
+		9.32	GO:0003746
+		9.26	GO:0016876
+		9.13	GO:0016874
+		9.1	GO:0004812
+		 Affiliating Genes	Score
+		EARS2 FARS2 VARS2	9.73
+		GFM1 TSFM	9.71
+		GFM1 TSFM	9.54
+		AARS2 EARS2 FARS2	9.33
+		AARS2 EARS2 FARS2 GFM1 TSFM VARS2	9.32
+			9.26
+			9.26
+			8.92
+			Affiliating Genes
+			AARS2 EARS2 FARS2 VARS2
+			AARS2 EARS2 GFM1 TSFM
+			AARS2 EARS2 FARS2
+			AARS2 EARS2 FARS2
+			GFM1 TSFM
+			AARS2 EARS2
+			AARS2 EARS2 FARS2 VARS2
+			AARS2 EARS2 FARS2 VARS2
+			
+	NAME	NAME	
+	cytoskeleton	cell projection organization	
+	cell projection	determination of left/right symmetry	
+	axoneme	camera-type eye development	
+	MKS complex	non-motile cilium assembly	
+	cilium	cilium assembly	
+	ciliary transition zone	ciliary basal body docking	
+	GO ID	GO ID	
+	GO:0005856	GO:0030030	
+	GO:0042995	GO:0007368	
+	GO:0005930	GO:0043010	
+	GO:0036038	GO:1905515	
+	GO:0005929	GO:0060271	
+	GO:0035869	GO:0097711	
+	Score	Score	
+	9.62	9.37	
+	9.46	9.32	
+	9.37	9.26	
+	9.26	9.16	
+	9.26	9.13	
+	8.8	8.8	
+	Affiliating Genes	Affiliating Genes	
+	CC2D2A INPP5E RPGRIP1L TMEM67	CC2D2A TMEM67	
+	CC2D2A INPP5E RPGRIP1L TMEM67	CC2D2A RPGRIP1L	
+	INPP5E RPGRIP1L	CC2D2A RPGRIP1L	
+	CC2D2A TMEM67	CC2D2A RPGRIP1L	
+	CC2D2A INPP5E RPGRIP1L TMEM67	CC2D2A RPGRIP1L TMEM67	
+	CC2D2A RPGRIP1L TMEM67	CC2D2A RPGRIP1L TMEM67	
+			
+	NAME	NAME	NAME
+	extracellular space	metabolic process	hydrolase activity
+	lysosomal lumen	negative regulation of inflammatory response	"hydrolase activity, hydrolyzing O-glycosyl compounds"
+	lysosome	sphingolipid metabolic process	chitin binding
+	GO ID	response to pH	chitinase activity
+	GO:0005615	carbohydrate metabolic process	beta-galactosidase activity
+	GO:0043202	GO ID	glucosylceramidase activity
+	GO:0005764	GO:0008152	GO ID
+	Score	GO:0050728	GO:0016787
+	9.7	GO:0006665	GO:0004553
+	9.35	GO:0009268	GO:0008061
+	9.23	GO:0005975	GO:0004568
+	Affiliating Genes	Score	GO:0004565
+	ADA ARSA CCL18 CHIA CHIT1 GBA	9.63	GO:0004348
+	ARSA GBA HEXA PSAP SCARB2	9.61	Score
+	ACP5 ADA ARSA CHIT1 GBA HEXA	9.54	9.91
+		9.46	9.4
+		9.43	9.32
+		Affiliating Genes	9.26
+		ARSA CHIA CHIT1 GBA HEXA PKLR	9.16
+		ACP5 ADA GBA	8.96
+		GBA PSAP UGCG	Affiliating Genes
+		ARSA GBA	ACP5 ADA ARSA CHIA CHIT1 GBA
+		CHIA CHIT1 GBA GBA3 HEXA PKLR	CHIA CHIT1
+			CHIA CHIT1
+			CHIA CHIT1
+			GBA3 PSAP
+			GBA GBA3
+			
+			
+	NIL	NIL	NIL
+			
+	NAME	NAME	NAME
+	extracellular space	defense response to virus	cytokine receptor binding
+	GO ID	cytokine-mediated signaling pathway	type I interferon receptor binding
+	GO:0005615	defense response	cytokine activity
+	Score	regulation of type I interferon-mediated signaling pathway	GO ID
+	9.17	cell-matrix adhesion	GO:0005126
+	Affiliating Genes	T cell activation involved in immune response	GO:0005132
+	BMP6 CD63 FGF2 IFNA1 IFNA2 KIT	positive regulation of peptidyl-serine phosphorylation of STAT protein	GO:0005125
+		GO ID	Score
+		GO:0051607	9.16
+		GO:0019221	8.96
+		GO:0006952	8.92
+		GO:0060338	Affiliating Genes
+		GO:0007160	IFNA1 IFNA2
+		GO:0002286	IFNA1 IFNA2
+		GO:0033141	BMP6 FGF2 IFNA1 IFNA2
+		Score	
+		9.73	
+		9.71	
+		9.69	
+		9.55	
+		9.54	
+		9.52	
+		9.49	
+		Affiliating Genes	
+		IFNA1 IFNA2 ISG20	
+		IFNA1 IFNA2 KIT	
+		IFNA1 IFNA2 MPO	
+		IFNA1 IFNA2	
+		CD44 CD63 ITGB1	
+		IFNA1 IFNA2	
+		IFNA1 IFNA2	
+			
+	NAME	NAME	NAME
+	extracellular space	neutrophil degranulation	protein N-terminus binding
+	extracellular exosome	defense response to bacterium	chloride channel activity
+	microvillus	chemotaxis	intracellular calcium activated chloride channel activity
+	secretory granule	chloride transmembrane transport	RAGE receptor binding
+	extracellular region	chloride transport	chloride channel regulator activity
+	sperm midpiece	neutrophil chemotaxis	glycoprotein binding
+	GO ID	astrocyte development	chloride channel inhibitor activity
+	GO:0005615	acute inflammatory response	GO ID
+	GO:0070062	GO ID	GO:0047485
+	GO:0005902	GO:0043312	GO:0005254
+	GO:0030141	GO:0042742	GO:0005229
+	GO:0005576	GO:0006935	GO:0050786
+	GO:0097225	GO:1902476	GO:0017081
+	Score	GO:0006821	GO:0001948
+	9.91	GO:0030593	GO:0019869
+	9.73	GO:0014002	Score
+	9.5	GO:0002526	9.65
+	9.46	Score	9.58
+	9.4	9.92	9.46
+	9.37	9.81	9.43
+	Affiliating Genes	9.78	9.37
+	CLCA1 CXCL8 DEFB1 ELANE PRSS1 S100A8	9.72	9.33
+	CFTR CLCA4 DEFB1 DNAJC5 DNASE1 ELANE	9.71	9.32
+	CLCA1 SLC9A3R1 TGFB1	9.67	Affiliating Genes
+	CLCA1 ELANE STX1A TGFB1	9.57	DCTN4 STX1A TGFB1
+	CLCA1 CLCA4 CXCL8 DEFB1 DNASE1 ELANE	9.56	CFTR CLCA1 CLCA4
+	DEFB1 SLC9A3R1	Affiliating Genes	CLCA1 CLCA4
+		DNAJC5 ELANE FCGR2A S100A8 S100A9	S100A8 S100A9
+		DEFB1 ELANE S100A8 S100A9	CFTR SLC9A3R1
+		CXCL8 DEFB1 S100A8 S100A9	DNAJC5 STX1A TGFB1
+		CFTR CLCA1 CLCA4	CFTR STX1A
+		CFTR CLCA1 CLCA4	
+		CXCL8 S100A8 S100A9	
+		S100A8 S100A9	
+		DEFB1 S100A8	
+			
+	NAME	NAME	
+	apical plasma membrane	heart development	
+	cell-cell junction	negative regulation of canonical Wnt signaling pathway	
+	ciliary basal body	cell cycle arrest	
+	cell projection	liver development	
+	motile cilium	determination of left/right symmetry	
+	ciliary membrane	spinal cord development	
+	ciliary base	JAK-STAT cascade	
+	non-motile cilium	single organismal cell-cell adhesion	
+	GO ID	GO ID	
+	GO:0016324	GO:0007507	
+	GO:0005911	GO:0090090	
+	GO:0036064	GO:0007050	
+	GO:0042995	GO:0001889	
+	GO:0031514	GO:0007368	
+	GO:0060170	GO:0021510	
+	GO:0097546	 GO:0007259	
+	GO:0097730	GO:0016337	
+	Score	Score	
+	9.73	9.83	
+	9.67	9.79	
+	9.63	9.77	
+	9.61	9.72	
+	9.58	9.71	
+	9.54	9.62	
+	9.5	9.62	
+	9.48	9.62	
+	Affiliating Genes	Affiliating Genes	
+	CRB2 MUC1 PKHD1 UMOD	NEK8 PKD1 PKD2 TSC2	
+	NPHP1 NPHP4 PKD2	INVS NPHP3 NPHP4	
+	NPHP4 PKD2 PKHD1	PKD1 PKD2 TSC2	
+	INVS NEK8 NPHP1 NPHP3 NPHP4 PKD1	HNF1B PKD1 PKD2	
+	NPHP1 PKD1 PKD2	NEK8 NPHP3 PKD2	
+	PKD1 PKD2 UMOD	PKD1 PKD2	
+	NEK8 NPHP3 NPHP4	PKD1 PKD2	
+	NPHP4 PKD2	NPHP1 NPHP4 PKD1 PKHD1	
+			
+			
+	NAME	NAME	
+	cell projection	mRNA processing	
+	neuron projection	RNA splicing	
+	perikaryon	nervous system development	
+	Cajal body	spliceosomal snRNP assembly	
+	cytoplasmic ribonucleoprotein granule	spliceosomal complex assembly	
+	SMN-Sm protein complex	nuclear import	
+	Gemini of coiled bodies	"DNA-templated transcription, termination"	
+	SMN complex	GO ID	
+	GO ID	GO:0006397	
+	GO:0042995	GO:0008380	
+	GO:0043005	GO:0007399	
+	GO:0043204	GO:0000387	
+	GO:0015030	GO:0000245	
+	GO:0036464	GO:0051170	
+	GO:0034719	GO:0006353	
+	GO:0097504	Score	
+	GO:0032797	9.58	
+	Score	9.54	
+	9.73	9.46	
+	9.62	9.32	
+	9.46	9.26	
+	9.43	8.96	
+	9.4	8.62	
+	9.37	Affiliating Genes	
+	9.13	SMN1 SMN2 ZPR1	
+	8.92	SMN1 SMN2 ZPR1	
+	Affiliating Genes	FKTN NAIP SMN1 SMN2	
+	IGHMBP2 SMN1 SMN2 ZPR1	SMN1 SMN2	
+	NAIP SMN1 SMN2 SYP	SMN1 SMN2	
+	NAIP SMN1 SMN2 ZPR1	SMN1 SMN2	
+	SMN1 SMN2 ZPR1	SMN1 SMN2	
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2 ZPR1		
+	IGHMBP2 SMN1 SMN2 ZPR1		
+			
+			
+	NAME	NAME	
+	neuron projection	nervous system development	
+	Z disc	RNA splicing	
+	Cajal body	spliceosomal snRNP assembly	
+	cytoplasmic ribonucleoprotein granule	spliceosomal complex assembly	
+	SMN-Sm protein complex	nuclear import	
+	SMN complex	"DNA-templated transcription, termination"	
+	Gemini of coiled bodies	GO ID	
+	perikaryon	GO:0007399	
+	GO ID	GO:0008380	
+	GO:0043005	GO:0000387	
+	GO:0030018	GO:0000245	
+	GO:0015030	GO:0051170	
+	GO:0036464	GO:0006353	
+	GO:0034719	Score	
+	GO:0032797	9.5	
+	GO:0097504	9.37	
+	GO:0043204	9.26	
+	Score	9.16	
+	9.54	8.96	
+	9.43	8.62	
+	9.4	Affiliating Genes	
+	9.32	NAIP SMN1 SMN2	
+	9.26	SMN1 SMN2	
+	9.16	SMN1 SMN2	
+	8.96	SMN1 SMN2	
+	8.8	SMN1 SMN2	
+	Affiliating Genes	SMN1 SMN2	
+	NAIP SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	NAIP SMN1 SMN2		
+			
+	NAME	NAME	
+	Z disc	spliceosomal snRNP assembly	
+	perikaryon	spliceosomal complex assembly	
+	Cajal body	nuclear import	
+	cytoplasmic ribonucleoprotein granule	"DNA-templated transcription, termination"	
+	SMN-Sm protein complex	GO ID	
+	SMN complex	GO:0000387	
+	Gemini of coiled bodies	GO:0000245	
+	GO ID	GO:0051170	
+	GO:0030018	GO:0006353	
+	GO:0043204	Score	
+	GO:0015030	9.26	
+	GO:0036464	9.16	
+	GO:0034719	8.96	
+	GO:0032797	8.62	
+	GO:0097504	Affiliating Genes	
+	Score	SMN1 SMN2	
+	9.4	SMN1 SMN2	
+	9.37	SMN1 SMN2	
+	9.32	SMN1 SMN2	
+	9.26		
+	9.16		
+	8.96		
+	8.62		
+	Affiliating Genes		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		
+	SMN1 SMN2		

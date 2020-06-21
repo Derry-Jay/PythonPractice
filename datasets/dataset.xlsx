@@ -1,0 +1,155 @@
+	Disease id	Disease name	Associated genes	Transcription Factor	Gene/Locus MIM number 	MOLECULAR BASIS	Cure	PICTURE
+1	OMIM:130650	BECKWITH-WIEDEMANN SYNDROME	"NSD1 (64324), CDKN1C (1028), H19 (283120), KCNQ1OT1 (10984), H19-ICR (105259599),  
+NAP1L4,  
+PHLDA2, IGF2"	ICR1 A maternally inherited point mutation was identified in ICR1 in both IGF2  & H19  which altered binding of OCT transcription factors.	616186	"Caused by mutation in the cyclin-dependent kinase inhibitor 1C gene (CDKN1C, 600856.0001)
+- Caused by mutation in the nuclear receptor binding SET domain protein 1 (NSD1, 606681.0011)
+- Caused by mutation in the KCNQ1-overlapping transcript 1 gene (KCNQ1OT1, 604115.0001)
+- Caused by contiguous gene duplication of imprinted region of 11p15.5 
+- Caused by contiguous gene deletion of imprinted region of 11p15.5 
+"	"1. Patients with Beckwith-Wiedemann syndrome (BWS) may require frequent feedings or diazoxide to treat their hypoglycemia. 2. Infants and children must demonstrate the ability to maintain euglycemia during a fast of age-appropriate duration. The normal duration of fasting for an infant or child depends on body mass and the maturity of counterregulatory responses to hypoglycemia, which include gluconeogenesis, glycogenolysis, and ketogenesis."	
+				H19	103280			
+				KCNQ1OT1	604115			
+				CDKN1C	600856			
+								
+2	OMIM:613812	"BILE ACID SYNTHESIS DEFECT, CONGENITAL, 3"	CYP7B1 (9420)	"CYP7B1   gene with protein product: Entrez Gene: 9420 C, Ensembl: ENSG00000172817 C Vega: OTTHUMG00000164387 C, UCSC: uc003xvj.3 D, Protein Resource : O75881 D "	603711		"Diagnosis is based on serum hepatic enzyme and bilirubin profile, and analysis of urine, serum and bile using liquid secondary ionization mass spectrometry (LSIMS) and gas chromatography - mass spectrometry (GC-MS)."	
+				"Cholesterol degradation to bile acids in the liver can be initiated by either cholesterol 7a-hydroxylase (CYP7A1) of the classic (neutral) pathway, or by mitochondrial sterol 27-hydroxylase (CYP27A1) of the alternative (or acidic) pathway."				
+								
+3	OMIM:615085	"OSTEOPETROSIS, AUTOSOMAL RECESSIVE 8"	SNX10 (29887)	SNX10	614780		"Patients may require blood transfusions, treatment for infections and management of their developmental and visual problems. Bone marrow transplant can alleviate many features of the disease but needs to be performed early to minimise optic nerve encroachment."	
+	259700  							
+	259710 							
+	 611490 							
+4	OMIM:604273	"MITOCHONDRIAL COMPLEX V (ATP SYNTHASE) DEFICIENCY, NUCLEAR TYPE 1; MC5DN1"	"ATPAF2 (91647), DNAH8"	"ATPAF2, ATP12 Homolog, ATP12p, LP3663, MC5DN1"	608918	" Caused by mutation in the transmembrane protein 70 gene (TMEM70, 612418.0001) - Caused by mutation in the ATP synthase F1 complex assembly factor-2 gene (ATPAF2, 608918.0001)"		
+								
+5	OMIM:266150	PYRUVATE CARBOXYLASE DEFICIENCY	PC (5091)	PC	608786		"Treatments in patients with pyruvate carboxylase deficiency (PCD) are aimed at stimulating the pyruvate dehydrogenase complex (PDC) and providing alternative fuels. Correction of the biochemical abnormality can reverse some symptoms, but central nervous system damage progresses regardless of treatment."	
+							The PDC can provide an alternative pathway for pyruvate metabolism PDC activity can be optimized by cofactor supplementation with thiamine and lipoic acid and administration of dichloroacetate. Increased pyruvate metabolism through this pathway can help reduce the pyruvate and lactate levels.	
+							Biotin supplementation is given to help optimize the residual enzyme activity but is usually of little use.	
+							Citrate supplementation reduces the acidosis and provides the needed substrate in the citric acid cycle.	
+							Aspartic acid supplementation allows the urea cycle to proceed and reduces the ammonia level.	
+							One patient reportedly was successfully treated with a continuous nocturnal gastric drip feeding of uncooked cornstarch.	
+5	OMIM:222700	LYSINURIC PROTEIN INTOLERANCE	SLC7A7 (9056)	SLC7A7	603593	"Caused by mutation in the solute carrier family 7 (cationic amino acid transporter, y+ system), member 7 gene (SLC7A7, 603593.0001)"	"Treatment revolves around protein-restricted diet and supplement of lysine, ornithine, and citrulline. The complication of pulmonary alveolar proteinosis has been reported to be successfully treated by whole lung lavage."	
+6	OMIM:121300	"COPROPORPHYRIA, HEREDITARY"	"CPOX (1371),  
+HMBS,  
+PPOX,  
+ALAD, FECH, UROD,  
+UROS,  
+PCBD1,  
+SPOCK1"	CPOX - Harderoporphyria	612732			
+				CPOX - Coproporphyria	612732	"Caused by mutation in the coproporphyrinogen oxidase gene (CPO, 612732.0001)"	The goals in managing an acute attack of porphyria are to decrease heme synthesis and to reduce the production of porphyrin precursors.	
+							"High oral doses of glucose (400 g/d) can inhibit heme synthesis and are useful for the treatment of mild attacks. Intravenous glucose solutions (eg, 5% or 10% dextrose in water) can be used in patients who cannot eat, but may aggravate hyponatremia."	
+							Treatment options for other manifestations are as follows:	
+							"Nausea and vomiting - Prochloperazine, promazine, or ondansetron."	
+							Severe agitation and anxiety - Chlorpromazine	
+							"Hypertension and tachycardia - Atenolol, propranolol or labetalol (but use with caution and monitor for hypotension and bradycardia)"	
+7	OMIM:251290	BAND-LIKE CALCIFICATION WITH SIMPLIFIED GYRATION AND POLYMICROGYRIA	"OCLN (100506658),  
+USP18, JAM3,  
+COL4A1,  
+DKC1,  
+IFNA1"	OCLN	602876	"Caused by mutation in the occludin gene (OCLN, 602876.0001)"		
+8	OMIM:230900	"GAUCHER DISEASE, TYPE II"	"GBA (2629),  
+PSAP"	GBA	606463		Treating Gaucher disease minimizes symptoms and permanent damage to your body. There are two types of Gaucher disease treatments currently available: enzyme replacement therapy (ERT) and substrate reduction therapy (SRT).	
+								
+9	OMIM:201100	"ACRODERMATITIS ENTEROPATHICA, ZINC-DEFICIENCY TYPE"	"SLC39A4 (55630),  
+SLC39A4  , SLC30A4, ALB,  
+PLIN2,  
+OTC,  
+SLC30A2,  
+SLC39A5"	SLC39A4	607059		"Warm compresses to remove the scale crust, followed by application of white petrolatum to eroded skin lesions, may enhance reepithelialization when used concurrently with zinc replacement."	
+							Warm compresses and petrolatum applied 3 times a day to areas of weeping or crusted dermatitis may enhance re-epithelialization when used concurrently with zinc replacement.	
+10	OMIM:233700	"GRANULOMATOUS DISEASE, CHRONIC, AUTOSOMAL RECESSIVE, CYTOCHROME B-POSITIVE,TYPE I"	"NCF1 (653361), NCF4  , CYBB, CYBA  ,  
+NCF2  , NCF1  , IFNG, MT-CYB,  
+MPO"	NCF1	608512		"Patients with superficial or deep infections (vs those with obstructing granulomas) should receive aggressive antibiotics; the initial route is parenteral. Treatment usually requires antibiotic coverage for several weeks and should be associated with clear physical signs of resolution and systemic improvement (eg, decreased WBC count and decreased erythrocyte sedimentation rate if elevated at presentation)."	
+				CYBB	300481		"Ciprofloxacin with or without additional drug for staphylococcal infection is a common first choice in patients with chronic granulomatous disease. If no response is noted within the first 24-48 hours, coverage should be broadened to include additional antistaphylococcal agents (including coverage for methicillin-resistant Staphylococcus aureus), gram-negative possibilities, and Nocardia species."	
+								
+11	OMIM:276700	"TYROSINEMIA, TYPE I"	"FAH (2184),   
+GSTZ1, HPD,  
+ALAD,  
+AFP,  
+CYCS"	FAH	613871	"Caused by mutation in the fumarylacetoacetase gene (FAH, 613871.0001)"	"There is currently no cure for tyrosinemia type 1. Individuals with this condition need to be on a special diet restricted in two amino acids, tyrosine and phenylalanine, throughout life. Affected individuals may also be treated with a medication called nitisinone. Early diagnosis and prompt treatment are essential for an improved prognosis. "	
+								
+12	OMIM:607624	"GRISCELLI SYNDROME, TYPE 2"	"RAB27A (5873),  
+UNC13D, MLPH, MYO5A,  
+CCL5,  
+AGFG1"	RAB27A	603868	" Caused by mutations in the Ras-associated protein RAB27A gene (RAB27A, 603868.0001)"	"Medical treatment of patients with Griscelli syndrome is difficult. The only real treatment for the hemophagocytic lymphohistiocytosis syndromes of which Griscelli syndrome is a part is stem cell transplantation. For patients with defects in RAB27A, antibiotics and antiviral agents are used with mixed effects. Similarly, medications may not control the neurologic symptoms of the disease."	
+								
+13	OMIM:614887	PEROXISOME BIOGENESIS DISORDER 13A (ZELLWEGER)	"PEX14 (5195), HSD17B4,  
+PEX1, PEX3, PEX7,  
+PEX2,  
+PEX1"	PEX14	601791		The medication(s) listed below have been approved by the Food and Drug Administration (FDA) as orphan products for treatment of this condition.	
+							"cholic acid (Brand name: Cholbam) - Manufactured by Asklepion Pharmaceuticals, LLC "	
+							"FDA-approved indication: Treatment of bile acid synthesis disorders due to single enzyme defects and as adjunctive treatment of peroxisomal disorders including Zellweger spectrum disorders in patients who exhibit manifestations of liver disease, steatorrhea or complications from decreased fat soluble vitamin absorption. "	
+								
+14	OMIM:611721	COMBINED SAPOSIN DEFICIENCY	PSAP (5660)	PSAP	176801	"- Caused by mutation in the prosaposin gene (PSAP, 176801.0005)"	"The diagnosis in the present SapB-d patient was complicated by the early finding of a massive infarction of the left arteria cerebri media, presumably coincidental to the leukodystrophy. However, the finding of high urinary sulfatide eventually led to a molecular diagnosis of SapB-d. "	
+								
+15	OMIM:613027	GLYCOGEN STORAGE DISEASE IXC	"PHKG2 (5261),  
+GYS2, GYG1,  
+PYGL, PHKA2,  
+GBE1,  
+PYGM, G6PC"	PHKG2	172471	"- Caused by mutation in the testis/liver gamma-2 subunit of phosphorylase kinase gene (PHKG2, 172471.0001)"	"In some cases, diet therapy is helpful. Meticulous adherence to a dietary regimen may reduce liver size, prevent hypoglycemia, allow for reduction in symptoms, and allow for growth and development."	
+							Zingone and colleagues demonstrated the abolition of the murine clinical manifestations of von Gierke disease with a recombinant adenoviral vector. [11]These findings suggest that corrective gene therapy of GSDs may be possible for humans.	
+								
+16	OMIM:610678	COMBINED OXIDATIVE PHOSPHORYLATION DEFICIENCY 4	TUFM (7284)	TUFM	602389	" caused by defects in the mitochondrial oxidative phosphorylationdue to protein mistranslation, leading to a failure to assemble adequate amounts of three oxidative phosphorylationcomplexes."	No Treatment / medicine available	
+								
+17	OMIM:216360	COACH SYNDROME	"CC2D2A (57545), TMEM67 (91147), RPGRIP1L (23322), INPP5E  "	CC2D2A	612013	"- Caused by mutation in the transmembrane protein 67 gene (TMEM67, 609884.0013)"	The main clinical problem for patients with COACH syndrome is progressive portal hypertension and liver failure. Treatment aims to reduce symptoms and prevent complications.	
+				TMEM67	609884	"- Caused by mutation in the coiled-coil and C2 domains-containing protein 2A gene (CC2D2A, 612013.0006)"		
+				RPGRIP1L	610937	"- Caused by mutation in the RPGRIP1-like gene (RPGRIP1L, 610937.0011)"		
+								
+18	OMIM:231005	"GAUCHER DISEASE, TYPE IIIC"	GBA (2629)	GBA	606463	"Caused by mutation in the acid beta-glucosidase gene (GBA, 606463.0006)"	The treatment for patients with GD type 3 exhibiting clinically significant non neurological manifestations is enzyme substitution therapy (imiglucerase with marketing authorization (MA) since 1997). It appears to slow progression of the neurological symptoms and is effective against the systemic manifestations.	
+								
+								
+19	OMIM:232220	GLYCOGEN STORAGE DISEASE IB	SLC37A4 (2542)	SLC37A4	602671	"Caused by mutation in the glucose-6-phosphate transporter 1 gene (G6PT1, 602671.0001)"	"Treatment varies depending on the type of GSD. For types of GSD that involve the liver, treatment is aimed at keeping the right level of glucose in the blood. This is often enough to maintain the cells fuel needs and prevent long-term complications associated with poorly controlled GSD. Treatment consists of taking regular doses of uncooked cornstarch and/or nutrition supplements. Cornstarch is a complex carbohydrate that is difficult for the body to digest; therefore it maintains normal blood sugar levels for a longer period of time than most carbohydrates in food. Eating many small meals that are low in sugar can help keep blood sugar levels normal while preventing excess glycogen storage in the liver."	
+								
+								
+20	OMIM:154800	MAST CELL DISEASE	"KIT (3815), IFNA2,  
+MITF, MPO,  
+ITGB1, SYT1,  
+CD44,  
+BMP6"	KIT	164920	Mastocytosis is a disorder that can occur in both children and adults. It is caused by the presence of too many mast cells in your body.	kin and bone marrow biopsies	
+							•    Measurement of mast cell mediators in blood and urine	
+							•    Blood count	
+							•    Liver function studies	
+							•    Genetic tests	
+							". Antihistamines are commonly used. Cromolyn sodium, ketotifen and leukotriene-modifying agents are additional medications which may provide benefit. Epinephrine may be required to treat episodes of low blood pressure."	
+								
+21	OMIM:219700	CYSTIC FIBROSIS	"CFTR (1080), TGFB1  , FCGR2A,  
+DNASE1,  
+S100A8, SLC9A3R1,  
+CLCA1, DEFB1, CLCA4"	FCGR2A	146790	"Caused by mutations in the cystic fibrosis transmembrane conductance regulator gene (CFTR, 602421.0001)"	"There is no cure for cystic fibrosis, but treatment can ease symptoms and reduce complications."	
+				CFTR	602421		Antibiotics to treat and prevent lung infections	
+				TGFB1	190180		Anti-inflammatory medications to lessen swelling in the airways in your lungs	
+							"Mucus-thinning drugs to help you cough up the mucus, which can improve lung function"	
+							Inhaled medications called bronchodilators that can help keep your airways open by relaxing the muscles around your bronchial tubes	
+							Oral pancreatic enzymes to help your digestive tract absorb nutrients	
+								
+22	OMIN : 173900	POLYCYSTIC KIDNEY DISEASE	"UMOD, PKD1,  HNF1B,  
+TSC2, NPHP1,  INVS, MUC1, NPHP4"	PKD1	601313	Caused by different genetic flaws: Autosomal dominant polycystic kidney disease (ADPKD) and Autosomal recessive polycystic kidney disease (ARPKD).	Some of the treatment options may include:	
+			"
+"				"pain medication, except Ibuprofen, which is not recommended as it may worsen kidney disease"	
+							blood pressure medication	
+							antibiotics to treat UTIs	
+							a low sodium diet	
+							diuretics to help remove excess fluid from the body	
+							surgery to drain cysts and help relieve discomfort	
+								
+23		Spinal Muscular Atrophy-1 (SMA1)	"SMN1,  
+IGHMBP2, NAIP ,  
+SMN2  , SCO2, SYP,  
+COX14, VRK1, FKTN,  
+ZPR1"				Medicine:	
+							Acetylcholine	
+							abobotulinumtoxinA	
+							Botulinum Toxins	
+							"Botulinum Toxins, Type A"	
+							Cholinergic Agents	
+								
+								
+24		Spinal Muscular Atrophy-2	"SMN1, SMN2 ,  
+NAIP ,  
+NCAM1"				MEDICINE:	
+							Hydroxyurea	
+							4-Aminopyridine	
+							Riluzole	
+							Nucleic Acid Synthesis Inhibitors	
+							Neuroprotective Agents	
+								
+25		Spinal Muscular Atrophy-4 	"SMN1, SMN2 , COL6A1, MSTN, VAPB, PLEKHG5, FST"					
+								

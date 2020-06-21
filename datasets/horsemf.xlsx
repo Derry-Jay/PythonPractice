@@ -1,0 +1,75 @@
+Family ID	PROTEIN ID	GEO ID	TYPE	DECRIPTION
+NPFF	InterPro:IPR008065	GO:0005184	F	neuropeptide FF-amide peptide precursor
+NPFF	InterPro:IPR008065	GO:0005102	F	neuropeptide FF-amide peptide precursor
+TARBP2	InterPro:IPR028605	GO:0035197	F	TAR (HIV-1) RNA binding protein 2
+TARBP2	InterPro:IPR028605	GO:0003725	F	TAR (HIV-1) RNA binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004088	GO:0003723	F	poly(rC) binding protein 2
+PCBP2	InterPro:IPR004087	GO:0003676	F	poly(rC) binding protein 2
+ZNF740	InterPro:IPR007087	GO:0046872	F	zinc finger protein 740
+ZNF740	InterPro:IPR013087	GO:0003676	F	zinc finger protein 740
+ZNF740	InterPro:IPR007087	GO:0046872	F	zinc finger protein 740
+ZNF740	InterPro:IPR013087	GO:0003676	F	zinc finger protein 740
+ITGB7	InterPro:IPR015437	GO:0004872	F	integrin beta 7
+ITGB7	InterPro:IPR015437	GO:0004872	F	integrin beta 7
+CSAD	InterPro:IPR002129	GO:0030170	F	cysteine sulfinic acid decarboxylase
+IPO8	InterPro:IPR001494	GO:0008536	F	importin 8
+IPO8	InterPro:IPR016024	GO:0005488	F	importin 8
+CSAD	InterPro:IPR002129	GO:0030170	F	cysteine sulfinic acid decarboxylase
+LOC100056745	InterPro:IPR024678	GO:0004674	F	serine/threonine-protein kinase WNK1
+FGD4	InterPro:IPR000219	GO:0005089	F	"FYVE, RhoGEF and PH domain containing 4"
+CSAD	InterPro:IPR002129	GO:0030170	F	cysteine sulfinic acid decarboxylase
+VDR	InterPro:IPR001723	GO:0003707	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR001628	GO:0003700	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+EIF4B	InterPro:IPR000504	GO:0003676	F	eukaryotic translation initiation factor 4B
+EIF4B	InterPro:IPR012677	GO:0000166	F	eukaryotic translation initiation factor 4B
+LOC100061595	InterPro:IPR001664	GO:0005198	F	"keratin, type II cytoskeletal 6A"
+LOC100065543	InterPro:IPR007960	GO:0004930	F	taste receptor type 2 member 14-like
+ACVR1B	InterPro:IPR000333	GO:0004702	F	activin A receptor type IB
+LOC100070179	InterPro:IPR000120	GO:0016884	F	vitamin D3 hydroxylase-associated protein-like
+PKP2	InterPro:IPR016024	GO:0005488	F	plakophilin 2
+SPX	InterPro:IPR028126	GO:0005184	F	spexin hormone
+ACVRL1	InterPro:IPR000333	GO:0004702	F	activin A receptor type IL
+VDR	InterPro:IPR001628	GO:0003700	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+SLC11A2	InterPro:IPR001046	GO:0005215	F	"solute carrier family 11 (proton-coupled divalent metal ion transporter), member 2"
+LARP4	InterPro:IPR012677	GO:0000166	F	La ribonucleoprotein domain family member 4
+LARP4	InterPro:IPR012677	GO:0000166	F	La ribonucleoprotein domain family member 4
+VDR	InterPro:IPR001723	GO:0003707	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+KCNH3	InterPro:IPR005821	GO:0005216	F	"potassium channel, voltage gated eag related subfamily H, member 3"
+KCNH3	InterPro:IPR000700	GO:0000155	F	"potassium channel, voltage gated eag related subfamily H, member 3"
+SENP1	InterPro:IPR003653	GO:0008234	F	SUMO1/sentrin specific peptidase 1
+HDAC7	InterPro:IPR017320	GO:0004407	F	histone deacetylase 7
+ANO6	InterPro:IPR032394	GO:0046983	F	anoctamin 6
+VDR	InterPro:IPR001628	GO:0043565	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR000324	GO:0008434	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR001723	GO:0003707	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR001628	GO:0003700	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR001628	GO:0043565	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR000324	GO:0008434	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR001628	GO:0043565	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+VDR	InterPro:IPR000324	GO:0008434	F	"vitamin D (1,25- dihydroxyvitamin D3) receptor"
+ATF7	InterPro:IPR013087	GO:0003676	F	activating transcription factor 7
