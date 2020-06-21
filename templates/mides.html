@@ -46,6 +46,12 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.8/font-awesome-animation.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.matchHeight-min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/animsition.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/functions.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/you-video.js') }}"></script>
 </head>
 
 <body>
@@ -130,12 +136,6 @@
             </form>
         </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.matchHeight-min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/animsition.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/functions.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/you-video.js') }}"></script>
     <script type="text/javascript">
         $(".enticlick").click(function () {
             window.location = $(this).find("a").attr("href");
