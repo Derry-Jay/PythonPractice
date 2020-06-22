@@ -1,3 +1,1 @@
-import dbops as pdb
-import output as op
-import upload as up
+from FunctionalModules import dbops as pdb, output as op, upload as up
