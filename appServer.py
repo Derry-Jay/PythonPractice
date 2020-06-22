@@ -1,7 +1,7 @@
 from flask import Flask, render_template as rt, redirect, url_for, session, request as rq
 import os
 from FunctionalModules import *
-import pdb
+# import pdb
 app = Flask(__name__)
 l = []
 app.secret_key = "Gene_Ontology"
