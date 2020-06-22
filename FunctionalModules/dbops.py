@@ -21,6 +21,7 @@ ai = "select user_name,user_type"
 # "Select * from cc "
 # "Select * from mf"
 # "Select * from id"
+# CREATE TABLE IF NOT EXISTS `gened`(`id` varchar(222) DEFAULT NULL,`name` varchar(2222) DEFAULT NULL,`geneid` varchar(2222) DEFAULT NULL,`ie` varchar(2222) DEFAULT NULL,`sympt` varchar(22222) DEFAULT NULL,`prec` varchar(2222) DEFAULT NULL,`ppi` varchar(1000) DEFAULT NULL)
 def ins(p):
     if p != [] and '' not in p:
         Qy = aid+"user_name='%s' and user_type='%s' and user_mail='%s' and gender='%s' and city='%s' and password='%s'" % (
