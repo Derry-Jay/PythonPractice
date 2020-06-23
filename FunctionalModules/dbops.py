@@ -21,6 +21,7 @@ ai = "select user_name,user_type"
 # "Select * from cc "
 # "Select * from mf"
 # "Select * from id"
+# CREATE TABLE `ghis`(`sid`,`uid`,`gid`,`gtype`,`file`)
 # CREATE TABLE IF NOT EXISTS `gened`(`id` varchar(222) DEFAULT NULL,`name` varchar(2222) DEFAULT NULL,`geneid` varchar(2222) DEFAULT NULL,`ie` varchar(2222) DEFAULT NULL,`sympt` varchar(22222) DEFAULT NULL,`prec` varchar(2222) DEFAULT NULL,`ppi` varchar(1000) DEFAULT NULL)
 def ins(p):
     if p != [] and '' not in p:
