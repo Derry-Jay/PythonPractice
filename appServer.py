@@ -38,6 +38,8 @@ def signup():
 
 # @app.route('/disease', methods=['POST', 'GET'])
 # def dispdis():
+# @app.route('//')
+# def
 @app.route('/success/<uname>/<utp>/<sex>/<city>', methods=['POST', 'GET'])
 def success(uname, utp, sex, city):
     if session != {}:
