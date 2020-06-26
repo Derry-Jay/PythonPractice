@@ -34,12 +34,14 @@ def welcome():
 @app.route('/signup')
 def signup():
     return rt('signup.html')
-
-
+# @a
+# @a
 # @app.route('/disease', methods=['POST', 'GET'])
 # def dispdis():
 # @app.route('//')
 # def
+# @a
+# @a
 @app.route('/success/<uname>/<utp>/<sex>/<city>', methods=['POST', 'GET'])
 def success(uname, utp, sex, city):
     if session != {}:
