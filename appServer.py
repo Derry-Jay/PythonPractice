@@ -33,7 +33,7 @@ def welcome():
 
 @app.route('/signup')
 def signup():
-    return rt('signup.html')
+    return rt('signup.vue')
 # @a
 # @a
 # @app.route('/disease', methods=['POST', 'GET'])
@@ -45,7 +45,7 @@ def signup():
 @app.route('/success/<uname>/<utp>/<sex>/<city>', methods=['POST', 'GET'])
 def success(uname, utp, sex, city):
     if session != {}:
-        return rt('home.html', name=uname, utype=utp, gender=sex, city=city)
+        return rt('home.vue', name=uname, utype=utp, gender=sex, city=city)
     else:
         return goto('login')
 
@@ -65,7 +65,7 @@ def login():
         l.append(a[c])
     pf = pdb.ins(l)
     if pf:
-        return rt('login.html')
+        return rt('login.vue')
     else:
         return goto('signup')
 
