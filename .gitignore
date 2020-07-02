@@ -1,0 +1,6 @@
+/.vscode
+/node_modules
+/sql
+/__pycache__
+/package.json
+/FunctionalModules/__pycache__
