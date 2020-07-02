@@ -1,8 +1,9 @@
 <html lang="en">
   <head>
+  <script type = "text/javascript">
+  </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="val.js"></script>
     <title>Signup</title>
     <meta property="og:url" content="http://www.valeron.net/index.html" />
     <meta property="og:type" content="website" />
@@ -124,6 +125,7 @@
     <script src="js/animsition.min.js"></script>
     <script src="js/Slickform.js"></script>
     <script src="js/functions.js"></script>
+    <script src="val.js"></script>
   </head>
   <body>
     <div class="animsition-overlay">
