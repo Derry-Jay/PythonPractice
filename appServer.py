@@ -41,7 +41,7 @@ def signup():
 # @app.route('//')
 # def
 # @a
-# @a
+# @a 
 @app.route('/success/<uname>/<utp>/<sex>/<city>', methods=['POST', 'GET'])
 def success(uname, utp, sex, city):
     if session != {}:
