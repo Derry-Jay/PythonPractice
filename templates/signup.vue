@@ -1,8 +1,4 @@
-<!--  --><template>
-<html>
-  <head>
-    <script type = "text/javascript">
-    </script>
+<script type = "text/javascript"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
@@ -125,8 +121,6 @@
     <script src="{{ url_for('static',filename='js/functions.js') }}"></script>
     <script src="{{ url_for('static',filename='js/val.js') }}"></script>
     <script src="{{ url_for('static',filename='js/vue.js') }}"></script>
-  </head>
-  <body>
     <div class="animsition-overlay">
       <div class="horBar2Bxx wow fadeInLeftBig" data-wow-duration="3s"></div>
       <header class="main_h">
