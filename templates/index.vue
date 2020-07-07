@@ -1,18 +1,50 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="{{ url_for('static',filename='js/jquery.matchHeight-min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/animsition.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/jquery.parallax-scroll.js') }}"></script>
+<script src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/jquery.cbpQTRotator.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/functions.js') }}"></script>
+<script src="{{ url_for('static',filename='js/particle.js') }}"></script>
+<script src="{{ url_for('static',filename='js/vue.js') }}"></script>
+<style src="{{ url_for('static',filename='css/animsition.min.css') }}"></style>
+<style src="{{ url_for('static',filename='css/grid.min.css') }}"></style>
+<style src="{{ url_for('static',filename='css/style.css') }}"></style>
+<style src="{{ url_for('static',filename='css/menu.css') }}"></style>
+<style src="{{ url_for('static',filename='css/overlay.css') }}"></style>
+<style src="{{ url_for('static',filename='css/owl.carousel.css') }}"></style>
+<style src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></style>
+<style src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"></style>
+<!--  -->
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ontology</title>
-<meta property="og:url" content="http://www.valeron.net/index.html" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Free responsive web template Istria" />
-<meta property="og:description" content="Free responsive web template Istria 1 by Valeron design studio" />
-<meta property="og:image" content="http://www.valeron.net/img/valeron-artist.jpg" />
-<meta name="description" content="Free responsive web template Istria 1 by Valeron design studio" />
-<meta name="msapplication-tap-highlight" content="no" />
-<meta name="robots" content="index,follow,all" />
-<meta name="keywords" content="Izrada web stranica, web studio Istra" />
-<meta name="author" content="Valeron design studio" />
+<meta ="" ="" />
+<meta ="" ="" />
+<meta ="" ="" />
+<meta ="" ="" />
+<meta ="" ="" />
+<meta ="" ="" />
+<meta ="" ="" />
+<link rel="stylesheet" href="">
+<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="">
+<link rel="stylesheet" href="">
+<link rel="stylesheet" href="">
+</head>
+<body>
+<a href="http://localhost:5000"></a>
+<a href="http://localhost:5000"></a>
+<a href="http://localhost:5000"></a>
+<a href="http://localhost:5000"></a>
+</body>
+</html>
 <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static',filename='img/apple-touch-icon-57x57.png') }}">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static',filename='img/apple-touch-icon-60x60.png') }}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static',filename='img/apple-touch-icon-72x72.png') }}">
@@ -27,42 +59,18 @@
 <link rel="icon" type="image/png" href="{{ url_for('static',filename='img/favicon-96x96.png') }}" sizes="96x96">
 <link rel="icon" type="image/png" href="{{ url_for('static',filename='img/favicon-16x16.png') }}" sizes="16x16">
 <link rel="manifest" href="{{ url_for('static',filename='img/manifest.json') }}">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-TileImage" content="{{ url_for('static',filename='img/mstile-144x144.png') }}">
-<meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="{{ url_for('static',filename='css/animsition.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/grid.min.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/menu.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/overlay.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/owl.carousel.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="{{ url_for('static',filename='js/jquery.matchHeight-min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/animsition.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/jquery.parallax-scroll.js') }}"></script>
-<script src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/jquery.cbpQTRotator.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/functions.js') }}"></script>
-<script src="{{ url_for('static',filename='js/particle.js') }}"></script>
-<script type="text/javascript">
-</script>
-</head>
-<body>
-<div class="animsition-overlay">
+<template>
+  <div class="animsition-overlay">
   <div id="section-1">
-      <header class="main_h">
-      <div class="menufix"> <a class="logo" href="http://localhost:5000/welcome"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></a>
+    <header class="main_h">
+      <div class="menufix"> 
+        <router-link to="/welcome" class="logo"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></router-link>
         <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
         <nav>
           <ul>
-            <li><a class="out active animsition-link" href="http://localhost:5000/welcome">HOME</a></li>
-            <li class="line"><a class="out animsition-link" href="http://localhost:5000/login">SIGNIN</a></li>
-            <li class="line"><a class="out animsition-link" href="http://localhost:5000/signup">SIGNUP</a></li>
+            <li><router-link to="/welcome" class="out active animsition-link">HOME</router-link></li>
+            <li class="line"><router-link to="/login" class="out animsition-link">SIGNIN</router-link></li>
+            <li class="line"><router-link to="/signup" class="out animsition-link">SIGNUP</router-link></li>
           </ul>
         </nav>
       </div>
@@ -74,29 +82,57 @@
   </div>
   <div class="colw_6 paddbott100 spec-r"></div>
   </div>
-  <p class="dolje"></p>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $("#owl-partners").owlCarousel({
-          autoPlay: 4000,
-          stopOnHover : true,
-          pagination : false,
-          items : 5,
-          itemsDesktop : [1199,4],
-          itemsDesktopSmall : [959,3]
-      });
+</template>
+<script type="text/javascript">
+  import Vue from 'vue';
+  import VueMeta from 'vue-meta';
+  import VueRouter from 'vue-router';
+  import VueLink from 'vue-link';
+  export default {
+    name: 'welcome',
+    metaInfo: { 
+      title: 'Welcome',
+      meta: [
+        {charset:'utf-8'},
+        {name:'viewport',content:'width=device-width, initial-scale=1.0'},
+        {property:'og:url',content:'http://www.valeron.net/index.html'},
+        {property:'og:type',content:'website'},
+        {property:'og:title',content:'Free responsive web template Istria'},
+        {property:'og:description',content:'Free responsive web template Istria 1 by Valeron design studio'},
+        {property:'og:image',content:'http://www.valeron.net/img/valeron-artist.jpg'},
+        {name:'description',content:'Free responsive web template Istria 1 by Valeron design studio'},
+        {name:'msapplication-tap-highlight',content:'no'},
+        {name:'robots',content:'index,follow,all'},
+        {name:'keywords',content:'Izrada web stranica, web studio Istra'},
+        {name:'author',content:'Valeron design studio'},
+        {name:'msapplication-TileColor',content:'#da532c'},
+        {name:'msapplication-TileImage',content:'img/mstile-144x144.png'},
+        {name:'theme-color',content:'#ffffff'}
+      ]
+    }
+  }
+  const router = new VueRouter(
+  { routes:[{path:'/welcome'},{path: '/login'},{path: '/signup'}] }
+  );
+  $(document).ready(function(){
+    $("#owl-partners").owlCarousel({
+      autoPlay: 4000,
+      stopOnHover : true,
+      pagination : false,
+      items : 5,
+      itemsDesktop : [1199,4],
+      itemsDesktopSmall : [959,3]
     });
-    $(function(){
-	      $('#cbp-qtrotator').cbpQTRotator();
-	  });
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-15815880-3']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-</body>
-</html>
+  });
+  $(function(){
+	  $('#cbp-qtrotator').cbpQTRotator();
+	});
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15815880-3']);
+  _gaq.push(['_trackPageview']);
+  (function(){
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
