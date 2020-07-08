@@ -4,7 +4,7 @@ def blend(f1,f2):
     return lambda a,**b: f1(f2(a,**b))
 goto = blend(redirect,url_for)
 @app.route('/signup')
-def signup(parameter_list):
+def signup():
     return render_template('signup.vue')
 @app.route('/welcome')
 def welcome():
