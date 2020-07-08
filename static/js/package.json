@@ -10,13 +10,15 @@
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "vue": "^2.6.11",
+    "vue-feather-icons": "^5.0.0",
+    "vue-icon": "^2.1.2",
     "vue-link": "^1.6.1",
     "vue-manifest": "^0.1.1",
     "vue-meta": "^2.4.0",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-dev-middleware": "^3.7.2"
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "jquery": "^3.5.1"

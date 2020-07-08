@@ -45,8 +45,8 @@
 <a href="http://localhost:5000"></a>
 </body>
 </html>
-<link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static',filename='img/apple-touch-icon-57x57.png') }}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static',filename='img/apple-touch-icon-60x60.png') }}">
+<link ="" ="" href="{{ url_for('static',filename='img/apple-touch-icon-57x57.png') }}">
+<link ="" ="" href="{{ url_for('static',filename='img/apple-touch-icon-60x60.png') }}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static',filename='img/apple-touch-icon-72x72.png') }}">
 <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static',filename='img/apple-touch-icon-76x76.png') }}">
 <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static',filename='img/apple-touch-icon-114x114.png') }}">
@@ -61,26 +61,29 @@
 <link rel="manifest" href="{{ url_for('static',filename='img/manifest.json') }}">
 <template>
   <div class="animsition-overlay">
-  <div id="section-1">
-    <header class="main_h">
-      <div class="menufix"> 
-        <router-link to="/welcome" class="logo"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></router-link>
-        <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
-        <nav>
-          <ul>
-            <li><router-link to="/welcome" class="out active animsition-link">HOME</router-link></li>
-            <li class="line"><router-link to="/login" class="out animsition-link">SIGNIN</router-link></li>
-            <li class="line"><router-link to="/signup" class="out animsition-link">SIGNUP</router-link></li>
-          </ul>
-        </nav>
+    <icon name=""></icon>
+    <div id="section-1">
+      <header class="main_h">
+        <div class="menufix"> 
+          <router-link to="/welcome" class="logo"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></router-link>
+          <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
+          <nav>
+            <ul>
+              <li><router-link to="/welcome" class="out active animsition-link">HOME</router-link></li>
+              <li class="line"><router-link to="/login" class="out animsition-link">SIGNIN</router-link></li>
+              <li class="line"><router-link to="/signup" class="out animsition-link">SIGNUP</router-link></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="hero">
+        <h1 id="title-1">GENE<em><span>M</span>iRNA</em></h1>
+        <div class="fixbottarro"> <a class="scroll" href="#section-2">Scroll for more</a> </div>
       </div>
-    </header>
-    <div class="hero">
-      <h1 id="title-1">GENE<em><span>M</span>iRNA</em></h1>
-      <div class="fixbottarro"> <a class="scroll" href="#section-2">Scroll for more</a> </div>
     </div>
-  </div>
-  <div class="colw_6 paddbott100 spec-r"></div>
+    <div class="colw_6 paddbott100 spec-r">
+      <p class="dolje" id="section-2"></p>
+    </div>
   </div>
 </template>
 <script type="text/javascript">
@@ -113,6 +116,9 @@
   }
   const router = new VueRouter(
   { routes:[{path:'/welcome'},{path: '/login'},{path: '/signup'}] }
+  );
+  const linker = new VueLink(
+    {link:[{rel:'apple-touch-icon',sizes:'57x57'},{rel:'apple-touch-icon',sizes:'60x60'}]}
   );
   $(document).ready(function(){
     $("#owl-partners").owlCarousel({
