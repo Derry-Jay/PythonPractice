@@ -59,33 +59,6 @@
 <link rel="icon" type="image/png" href="{{ url_for('static',filename='img/favicon-96x96.png') }}" sizes="96x96">
 <link rel="icon" type="image/png" href="{{ url_for('static',filename='img/favicon-16x16.png') }}" sizes="16x16">
 <link rel="manifest" href="{{ url_for('static',filename='img/manifest.json') }}">
-<template>
-  <div class="animsition-overlay">
-    <icon name=""></icon>
-    <div id="section-1">
-      <header class="main_h">
-        <div class="menufix"> 
-          <router-link to="/welcome" class="logo"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></router-link>
-          <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
-          <nav>
-            <ul>
-              <li><router-link to="/welcome" class="out active animsition-link">HOME</router-link></li>
-              <li class="line"><router-link to="/login" class="out animsition-link">SIGNIN</router-link></li>
-              <li class="line"><router-link to="/signup" class="out animsition-link">SIGNUP</router-link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <div class="hero">
-        <h1 id="title-1">GENE<em><span>M</span>iRNA</em></h1>
-        <div class="fixbottarro"> <a class="scroll" href="#section-2">Scroll for more</a> </div>
-      </div>
-    </div>
-    <div class="colw_6 paddbott100 spec-r">
-      <p class="dolje" id="section-2"></p>
-    </div>
-  </div>
-</template>
 <script type="text/javascript">
   import Vue from 'vue';
   import VueMeta from 'vue-meta';
@@ -142,3 +115,30 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+<template>
+  <div class="animsition-overlay">
+    <icon name=""></icon>
+    <div id="section-1">
+      <header class="main_h">
+        <div class="menufix"> 
+          <router-link to="/welcome" class="logo"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="Hello"></router-link>
+          <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
+          <nav>
+            <ul>
+              <li><router-link to="/welcome" class="out active animsition-link">HOME</router-link></li>
+              <li class="line"><router-link to="/login" class="out animsition-link">SIGNIN</router-link></li>
+              <li class="line"><router-link to="/signup" class="out animsition-link">SIGNUP</router-link></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="hero">
+        <h1 id="title-1">GENE<em><span>M</span>iRNA</em></h1>
+        <div class="fixbottarro"> <a class="scroll" href="#section-2">Scroll for more</a> </div>
+      </div>
+    </div>
+    <div class="colw_6 paddbott100 spec-r">
+      <p class="dolje" id="section-2"></p>
+    </div>
+  </div>
+</template>
