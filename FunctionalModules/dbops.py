@@ -13,7 +13,7 @@ def ins(p):
             pc = i
         qs = "insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values ('" + \
             p[0]+"','" + p[1] + "','" + p[2]+"',"+p[3] + \
-            ",'"+p[4]+"','"+p[5]+","+p[6]+",'"+p[7]+"')"
+            ",'"+p[4]+"','"+p[5]+"',"+p[6]+",'"+p[7]+"')"
         if pc == 0:
             cur.execute(qs)
             con.commit()
