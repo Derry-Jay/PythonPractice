@@ -12,7 +12,8 @@ def ins(p):
         for i in pct:
             pc = i
         qs = "insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values ('" + \
-            p[0]+"','" + p[1] + "','" + p[2]+"','"+p[3]+"','"+p[4]+"')"
+            p[0]+"','" + p[1] + "','" + p[2]+"',"+p[3] + \
+            ",'"+p[4]+"','"+p[5]+","+p[6]+",'"+p[7]+"')"
         if pc == 0:
             cur.execute(qs)
             con.commit()
@@ -20,11 +21,16 @@ def ins(p):
 
 
 def get(p):
-    cur.execute(cqs+"mail_id='%s' and password='%s'" % (p[0], p[1]))
-    prc = cur.fetchone()
-    return prc[0]
+    if p != [] and '' not in p:
+        cur.execute(cqs+"user_mail='%s' and password='%s'" % (p[0], p[1]))
+        prc = cur.fetchone()
+        return prc[0]
+    else:
+        return -1
 
 
 def get1(q):
-    cur.execute(snt+" from registered_users where mail_id='%s' and password='%s'" % (q[0], q[1]))
-    return cur.fetchone()
+    if q != [] and '' not in q:
+        cur.execute(
+        snt+" from registered_users where user_mail='%s' and password='%s'" % (q[0], q[1]))
+        return cur.fetchone()
