@@ -4,7 +4,7 @@ snt = "select user_name,user_type"
 con = pypg.connect(user='postgres', password='root', database='postgres')
 cur = con.cursor()
 def ins(p):
-    if p != []:
+    if p != [] and '' not in p:
         cur.execute(cqs+"user_name='%s' and user_type='%s' and mail_id='%s' and password='%s'" %
                     (p[0], p[1], p[2], p[4]))
         pct = cur.fetchone()
