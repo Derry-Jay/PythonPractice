@@ -3,5 +3,5 @@ node_modules/
 /__pycache__/
 /sql/
 /FunctionalModules/__pycache__/
-/js/package.json
-/js/package-lock.json
+package.json
+package-lock.json
