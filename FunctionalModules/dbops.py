@@ -5,7 +5,7 @@ con = pypg.connect(user='postgres', password='root', database='postgres')
 cur = con.cursor()
 def ins(p):
     if p != [] and '' not in p:
-        cur.execute(cqs+"user_name='%s' and user_type='%s' and mail_id='%s' and password='%s'" %
+        cur.execute(cqs+"user_name='%s' and user_type='%s' and user_mail='%s' and password='%s'" %
                     (p[0], p[1], p[2], p[4]))
         pct = cur.fetchone()
         pc = 0
@@ -30,7 +30,10 @@ def get(p):
 
 
 def get1(q):
+    a = 0
     if q != [] and '' not in q:
-        cur.execute(
-        snt+" from registered_users where user_mail='%s' and password='%s'" % (q[0], q[1]))
-        return cur.fetchone()
+        cur.execute(cqs + "user_mail='%s' and password='%s'" % (q[0], q[1]))
+        a = cur.fetchone()
+        if a == 1:
+            cur.execute(snt+" from registered_users where user_mail='%s' and password='%s'" % (q[0], q[1]))
+            return cur.fetchone()
