@@ -53,9 +53,9 @@
             <label><span>*</span>User Type</label>
             <select v-model="usertype" class="form-control" multiple>
               <option value="Select" disabled>Select</option>
-              <option value=0>Patient</option>
-              <option value=1>Doctor</option>
-              <option value=2>Scientist</option>
+              <option value="0">Patient</option>
+              <option value="1">Doctor</option>
+              <option value="2">Scientist</option>
             </select>
             <br />
             <label><span>*</span>Email</label>
@@ -67,12 +67,13 @@
             <label><span>*</span>Gender</label>
             <select v-model="gender" class="form-control" multiple>
               <option value="Select" disabled>Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="0">Trans-Gender</option>
             </select>
             <br />
-            <label><span>*</span>City</label>
-            <input v-model="city.value" :ref="city.ref" />
+            <label><span>*</span>Pincode</label>
+            <input v-model="pincode.value" :ref="pincode.ref" />
             <br />
             <label><span>*</span>Mobile Number</label>
             <input v-model="phone.value" />
