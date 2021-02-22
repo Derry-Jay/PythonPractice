@@ -114,12 +114,17 @@ def getUserDetails():
             try:
                 cur.execute(
                     '''select user_name,date_of_birth,gender,mobile_number,user_email,pincode,user_type from public.registered_users where user_id=%s''', (user_id))
-                fd = [dict(zip([col[0] for col in cur.description], row))
-                      for row in cur][0]
-                fd['date_of_birth'] = fd['date_of_birth'].strftime(
-                    "%d-%m-%Y %H:%M:%S")
-                response.body = str(
-                    {"success": True, "status": True, "message": "User Details", "result": str(fd)})
+                dft = [dict(zip([col[0] for col in cur.description], row))
+                       for row in cur]
+                if dft is not None and dft != []:
+                    fd = dft[0]
+                    fd['date_of_birth'] = fd['date_of_birth'].strftime(
+                        "%d-%m-%Y %H:%M:%S")
+                    response.body = str(
+                        {"success": True, "status": True, "message": "User Details", "result": str(fd)})
+                else:
+                    response.body = str(
+                        {"success": True, "status": True, "message": "User Details"})
             except Exception as e:
                 print(e)
                 error = e.args[0].split('\n')[0]
@@ -200,7 +205,7 @@ def deleteUser():
     except KeyError:
         response.status = 409
         return
-    
+
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
