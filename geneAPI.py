@@ -3,7 +3,6 @@ import ast
 import bottle
 import psycopg2 as pypg
 from bottle import Bottle, request, response, post, get, put, delete, run
-import itertools
 cqs = '''select count(*) from public.registered_users where '''
 snt = '''select user_name,user_type '''
 app = Bottle(__name__)
