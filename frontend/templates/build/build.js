@@ -1,19 +1,19 @@
 'use strict'
+
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 
-import ora from 'ora'
-import rm from 'rimraf'
+import { ora } from 'ora'
+import { rm } from 'rimraf'
 import { join } from 'path'
 import { red, cyan, yellow } from 'chalk'
-import webpack from 'webpack'
+import { webpack } from 'webpack'
 import { build } from '../config'
-import webpackConfig from './webpack.prod.conf'
+import { webpackConfig } from './webpack.prod.conf'
 
 const spinner = ora('building for production...')
 spinner.start()
-
 rm(join(build.assetsRoot, build.assetsSubDirectory), err => {
     if (err) throw err
     webpack(webpackConfig, function (err, stats) {

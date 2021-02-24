@@ -1,6 +1,7 @@
 import re
 import ast
 import bottle
+import pymongo as pm
 import psycopg2 as pypg
 from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(*) from public.registered_users where '''
@@ -9,6 +10,7 @@ app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
+mc = pm.MongoClient("mongodb://localhost:27017")
 con = pypg.connect(user='postgres', password='password', database='postgres')
 cur = con.cursor()
 
@@ -118,7 +120,7 @@ def getUserDetails():
                 if dft is not None and dft != []:
                     fd = dft[0]
                     fd['date_of_birth'] = fd['date_of_birth'].strftime(
-                        "%d-%m-%Y %H:%M:%S")
+                        "%Y-%m-%d %H:%M:%S")
                     response.body = str(
                         {"success": True, "status": True, "message": "User Details", "result": str(fd)})
                 else:

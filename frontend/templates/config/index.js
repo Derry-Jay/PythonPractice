@@ -5,7 +5,7 @@
 import { resolve } from 'path'
 
 export const build = {
-    env: require('./prod.env'),
+    env: require('./prod.env.js'),
     index: resolve(__dirname, '../../templates/index.html'),
     assetsRoot: resolve(__dirname, '../../static'),
     assetsSubDirectory: 'img',
@@ -24,7 +24,7 @@ export const build = {
     bundleAnalyzerReport: process.env.npm_config_report
 }
 export const dev = {
-    env: require('./dev.env'),
+    env: require('./dev.env.js'),
     port: process.env.PORT || 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'img',
