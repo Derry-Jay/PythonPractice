@@ -21,6 +21,12 @@ cur = con.cursor()
 # cur.execute("""update marklist set total=300276""")
 # and
 # cqs + "user_mail='%s' and password='%s'" total
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
 
 
 @app.post('/login')
@@ -277,6 +283,7 @@ def deleteDocument():
 
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port='8000')
