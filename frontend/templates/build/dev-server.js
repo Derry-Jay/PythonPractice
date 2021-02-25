@@ -8,11 +8,11 @@ if (!process.env.NODE_ENV) {
 
 import opn from 'opn'
 import { posix } from 'path'
-import express, { static } from 'express'
+import { express } from 'express'
 import webpack from 'webpack'
 import proxyMiddleware from 'http-proxy-middleware'
-import webpackConfig, { output } from './webpack.dev.conf'
-
+import webpackConfig, { output } from './webpack.dev.conf.js'
+import 'express'
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || dev.port
 // automatically open browser, if not set will be false
@@ -64,7 +64,7 @@ app.use(devMiddleware)
 
 // serve pure static assets
 const staticPath = posix.join(dev.assetsPublicPath, dev.assetsSubDirectory)
-app.use(staticPath, static('./static'))
+app.use(staticPath, express.static('./static'))
 
 const uri = 'http://localhost:' + port
 

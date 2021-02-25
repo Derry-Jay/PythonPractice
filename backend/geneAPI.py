@@ -3,6 +3,7 @@ import ast
 import bottle
 import pymongo as pm
 import psycopg2 as pypg
+from google.cloud import storage
 from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(*) from public.registered_users where '''
 snt = '''select user_name,user_type '''
@@ -13,6 +14,13 @@ passwordpattern = re.compile(
 mc = pm.MongoClient("mongodb://localhost:27017")
 con = pypg.connect(user='postgres', password='password', database='postgres')
 cur = con.cursor()
+
+# cur.execute("show tables")
+# cur.execute("insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values " % )
+# cur.execute(snt+"mail='%s' and password='%s'")
+# cur.execute("""update marklist set total=300276""")
+# and
+# cqs + "user_mail='%s' and password='%s'" total
 
 
 @app.post('/login')
@@ -132,7 +140,7 @@ def getUserDetails():
                 response.body = str(
                     {"success": False, "status": False, "message": error})
         else:
-            raise ValueError
+            raise KeyError
     except ValueError:
         response.status = 400
         return
@@ -168,7 +176,7 @@ def updateUserData():
                 response.body = str(
                     {"success": False, "status": False, "message": error})
         else:
-            raise ValueError
+            raise KeyError
 
     except ValueError:
         response.status = 400
@@ -190,7 +198,7 @@ def deleteUser():
         elif 'user_id' in data.keys():
             try:
                 cur.execute(
-                    '''delete from registered_users where user_id=%s''', (data['user_id']))
+                    '''delete from public.registered_users where user_id=%s''', (data['user_id']))
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "User Deleted Successfully"})
@@ -199,7 +207,7 @@ def deleteUser():
                 response.body = str(
                     {"success": False, "status": False, "message": error})
         else:
-            raise ValueError
+            raise KeyError
     except ValueError:
         response.status = 400
         return
@@ -210,6 +218,65 @@ def deleteUser():
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
+
+@app.post('/storeDocs')
+def storeDocs():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'user_id' in data.keys() and 'doc_type' in data.keys() and 'doc_url' in data.keys():
+            try:
+                cur.execute(
+                    '''insert into public.documents(user_id, doc_type, doc_url) values(%s,%s,%s)''', (data['user_id'], data['doc_type'], data['doc_url']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Document Uploaded Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.delete('/deleteDoc')
+def deleteDocument():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'doc_id' in data.keys():
+            try:
+                cur.execute(
+                    '''delete from public.documents where doc_id=%s''', (data['doc_id']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Document Deleted Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port='8000')

@@ -9,7 +9,7 @@ export const build = {
     index: resolve(__dirname, '../../templates/index.html'),
     assetsRoot: resolve(__dirname, '../../static'),
     assetsSubDirectory: 'img',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/img',
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
