@@ -1,9 +1,11 @@
 import re
+import os
 import ast
-import bottle
+import boto3
+import logging
 import pymongo as pm
 import psycopg2 as pypg
-from google.cloud import storage
+from botocore.config import Config
 from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(*) from public.registered_users where '''
 snt = '''select user_name,user_type '''
@@ -14,19 +16,21 @@ passwordpattern = re.compile(
 mc = pm.MongoClient("mongodb://localhost:27017")
 con = pypg.connect(user='postgres', password='password', database='postgres')
 cur = con.cursor()
+mys = boto3.session.Session()
+myr = mys.region_name
+client = boto3.client('s3')
+s3 = boto3.resource('s3')
+for bucket in s3.buckets.all():
+    print(bucket.name)
 
-# cur.execute("show tables")
-# cur.execute("insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values " % )
-# cur.execute(snt+"mail='%s' and password='%s'")
-# cur.execute("""update marklist set total=300276""")
-# and
-# cqs + "user_mail='%s' and password='%s'" total
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
+# cur.execute('''insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values ''')
+# cur.execute(snt+'''mail=%s and password=%s''')
+# cur.execute(cqs + '''user_mail=%s and password=%s'''')
+# cur.execute('''update  set = and''')
+# '''select * from ghis''''
+# '''insert into gened values()'''
+# '''select * from gene1'''
+# '''select * from bf'''
 
 
 @app.post('/login')
@@ -46,7 +50,6 @@ def login():
                     cur.execute(cqs + "user_name=%s and password=%s", ud)
                     a = cur.fetchone()[0]
                     if a == 1:
-                        # "select * from ghis " "insert into gened values('"+did+"','"+dn+"','"+as+"','"+dt+"','"+sym+"','"+pre+"','"+ppi+"')" "Select * from gene1" "Select * from bf "
                         response.body = str(
                             {"success": True, "status": True, "message": "Logged In Successfully"})
                     else:
@@ -282,6 +285,32 @@ def deleteDocument():
         return
 
     response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/postToS3')
+def postFileToS3():
+    try:
+        data = request.files['file']
+        folder = ''
+        fps = os.path.join("temp", data.filename)
+        if fps.endswith(".jpg") or fps.endswith(".png") or fps.endswith(".svg"):
+            folder = 'img/'
+        elif fps.endswith(".pdf"):
+            folder = 'pdf/'
+        elif fps.endswith(".doc") or fps.endswith(".docx"):
+            folder = 'doc/'
+        data.save(fps)
+        client.upload_file(fps, 'gene-onto', folder +
+                           '{}'.format(data.filename))
+        os.remove(fps)
+        url = "http://s3-" + myr + ".amazonaws.com/gene-onto/" + folder + data.filename
+        response.body = str(
+            {"success": True, "status": True, "message": "Document Posted to Bucket Successfully", "location": url})
+    except Exception as e:
+        error = e.args[0].split('\n')[0]
+        response.body = str(
+            {"success": False, "status": False, "message": error})
     return ast.literal_eval(response.body)
 
 
