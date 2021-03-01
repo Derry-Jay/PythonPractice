@@ -23,14 +23,42 @@ s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
-# cur.execute('''insert into public.registered_users(user_name, user_type, user_mail, date_of_birth, gender, city, phone_no, password) values ''')
-# cur.execute(snt+'''mail=%s and password=%s''')
-# cur.execute(cqs + '''user_mail=%s and password=%s'''')
-# cur.execute('''update  set = and''')
-# '''select * from ghis''''
-# '''insert into gened values()'''
-# '''select * from gene1'''
-# '''select * from bf'''
+# and
+# and
+# %s,%s
+# execute
+# execute
+# execute
+# execute
+# %s
+#
+#
+#
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# ''''''
+# @adata
+# @adata
+# @a
+# @a
+# @a
+# @a
+# @a
+# @a
 
 
 @app.post('/login')
@@ -102,7 +130,6 @@ def register():
                             {"success": True, "status": True, "message": "User Registered Successfully"})
                     except Exception as e:
                         error = e.args[0].split('\n')[0]
-                        print(e)
                         response.body = str(
                             {"success": False, "status": False, "message": error})
                 else:
@@ -271,6 +298,372 @@ def deleteDocument():
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Document Deleted Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/addDiseaseCategory')
+def addDiseaseCategory():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_category' in data.keys():
+            try:
+                cur.execute(
+                    '''insert into public.disease_categories(disease_category) values(%s)''', (data['disease_category'],))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Category Added Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.put('/updateDiseaseCategory')
+def updateDiseaseCategory():
+    try:
+        data = request.json
+        if data == {} or data is None:
+            raise ValueError
+        elif 'disease_category' in data.keys() and 'disease_category_id' in data.keys():
+            try:
+                cur.execute(
+                    '''update public.disease_categories set disease_category = %s where disease_category_id = %s''', (data['disease_category'], data['disease_category_id']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Category Updated Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.delete('/deleteDiseaseCategory')
+def deleteDiseaseCategory():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_category_id' in data.keys():
+            try:
+                cur.execute(
+                    '''delete from public.disease_categories where disease_category_id = %s''', (data['disease_category_id']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Category Deleted Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/addDisease')
+def addDisease():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_category_id' in data.keys() and 'disease' in data.keys():
+            try:
+                d1 = (data['disease_category_id'], data['disease'])
+                cur.execute(
+                    '''insert into public.diseases(disease_category_id,disease) values (%s,%s)''', d1)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Added Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.put('/updateDisease')
+def updateDisease():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_id' in data.keys() and 'disease' in data.keys() and 'disease_category_id' in data.keys():
+            try:
+                d1 = (data['disease'], data['disease_category_id'],
+                      data['disease_id'])
+                cur.execute(
+                    '''update public.diseases set disease=%s , disease_category_id= %s where disease_id=%s''', d1)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Updated Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.delete('/deleteDisease')
+def deleteDisease():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_id' in data.keys():
+            try:
+                a = (data['disease_id'],)
+                cur.execute(
+                    '''delete from public.diseases where disease_id=%s''', a)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Disease Deleted Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/addGene')
+def addGene():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'gene' in data.keys() and 'gene_type' in data.keys():
+            try:
+                cur.execute(
+                    '''insert into public.genes(gene,gene_type) values(%s,%s)''', (data['gene'], data['gene_type']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Gene Added Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.put('/updateGene')
+def updateGene():
+    try:
+        data = request.json
+        if data == {} or data is None:
+            raise ValueError
+        elif 'gene' in data.keys() and 'gene_type' in data.keys() and 'gene_id' in data.keys():
+            try:
+                cur.execute(
+                    "update public.genes set gene=%s, gene_type=%s where gene_id=%s", (data['gene'], data['gene_type'], data['gene_id']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Gene Updated Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.delete('/deleteGene')
+def deleteGene():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'gene_id' in data.keys():
+            try:
+                p = (data['gene_id'],)
+                cur.execute('''delete from public.genes where gene=%s''', p)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Gene Deleted Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/addSymptom')
+def addSymptom():
+    try:
+        data = request.json
+        if data == {} or data is None:
+            raise ValueError
+        elif 'symptom' in data.keys():
+            try:
+                a = (data['symptom'],)
+                cur.execute(
+                    '''insert into public.symptoms(symptom) values(%s)''', a)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Symptom Added Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.put('/updateSymptom')
+def updateSymptom():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'symptom' in data.keys() and 'symptom_id' in data.keys():
+            try:
+                cur.execute(
+                    '''update public.symptoms set symptom=%s where symptom_id=%s''', (data['symptom'], data['symptom_id']))
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Symptom Updated Successfully"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.delete('/deleteSymptom')
+def deleteSymptom():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'symptom_id' in data.keys():
+            try:
+                v = (data['symptom_id'],)
+                cur.execute(
+                    '''delete from public.symptoms where symptom_id=%s''', v)
+                con.commit()
+                response.body = str(
+                    {"success": True, "status": True, "message": "Symptom Deleted Successfully"})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
