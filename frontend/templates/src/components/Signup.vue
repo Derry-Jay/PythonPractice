@@ -59,7 +59,7 @@
             </select>
             <br />
             <label><span>*</span>Email</label>
-            <input v-model="usermail.value" :ref="usermail.ref" />
+            <input v-model="useremail.value" :ref="useremail.ref" />
             <br />
             <label><span>*</span>Date Of Birth</label>
             <datepicker :value="state.date" name="dob"></datepicker>

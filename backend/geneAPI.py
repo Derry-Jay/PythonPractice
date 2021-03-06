@@ -7,8 +7,8 @@ import pymongo as pm
 import psycopg2 as pypg
 from botocore.config import Config
 from bottle import Bottle, request, response, post, get, put, delete, run
-cqs = '''select count(*) from public.registered_users where '''
-snt = '''select user_name,user_type '''
+cqs = '''select count(user_id) from public.registered_users where '''
+snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
 app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
@@ -16,49 +16,42 @@ passwordpattern = re.compile(
 mc = pm.MongoClient("mongodb://localhost:27017")
 con = pypg.connect(user='postgres', password='password', database='postgres')
 cur = con.cursor()
-mys = boto3.session.Session()
+mys = boto3.session.Session(
+    aws_access_key_id='AKIA4NWNR6RKKTEAI5PB', aws_secret_access_key='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', region_name='ap-south-1')
 myr = mys.region_name
-client = boto3.client('s3')
+client = mys.client('s3', aws_access_key_id='AKIA4NWNR6RKKTEAI5PB', aws_secret_access_key='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',
+                    region_name='ap-south-1', config=Config(signature_version='s3v4'))
 s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
-# and
-# and
-# %s,%s
-# execute
-# execute
-# execute
-# execute
+#  and user_name and user_mail= and password=
+#
+# %s,%s,%s,%s
+# cur.execute()
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# cur.execute('''''')
+# @app.delete
+# @app.
+# @app.
+# @app.
+# @app.
+# @app.
+# data['']
 # %s
-#
-#
-#
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# ''''''
-# @adata
-# @adata
-# @a
-# @a
-# @a
-# @a
-# @a
-# @a
+# , data['']
 
 
 @app.post('/login')
@@ -72,19 +65,27 @@ def login():
         if data is None:
             raise ValueError
         try:
-            if ('user_name' in data.keys() and 'password' in data.keys()):
+            if ('user_email' in data.keys() and 'password' in data.keys()):
                 try:
-                    ud = (data['user_name'], data['password'])
-                    cur.execute(cqs + "user_name=%s and password=%s", ud)
+                    ud = (data['user_email'], data['password'])
+                    cur.execute(cqs + "user_email=%s and password=%s", ud)
                     a = cur.fetchone()[0]
                     if a == 1:
-                        response.body = str(
-                            {"success": True, "status": True, "message": "Logged In Successfully"})
+                        try:
+                            cur.execute(
+                                '''select user_id,user_name,user_type from public.registered_users where user_email = %s and password = %s''', ud)
+                            q = cur.fetchone()
+                            v = {"success": True, "status": True, "message": "Logged In Successfully",
+                                 "user_id": q[0], "user_name": q[1], "user_type": q[2]}
+                            response.body = str(v)
+                        except Exception as e:
+                            error = e.args[0].split('\n')[0]
+                            response.body = str(
+                                {"success": False, "status": False, "message": error})
                     else:
                         response.body = str(
                             {"success": False, "status": False, "message": "User Does Not Exist"})
                 except Exception as e:
-                    print(e)
                     error = e.args[0].split('\n')[0]
                     response.body = str(
                         {"success": False, "status": False, "message": error})
@@ -155,10 +156,10 @@ def getUserDetails():
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
-            user_id = data['user_id']
             try:
+                q = (data['user_id'],)
                 cur.execute(
-                    '''select user_name,date_of_birth,gender,mobile_number,user_email,pincode,user_type from public.registered_users where user_id=%s''', (user_id))
+                    snt + ''' where user_id=%s''', q)
                 dft = [dict(zip([col[0] for col in cur.description], row))
                        for row in cur]
                 if dft is not None and dft != []:
@@ -171,7 +172,6 @@ def getUserDetails():
                     response.body = str(
                         {"success": True, "status": True, "message": "User Details"})
             except Exception as e:
-                print(e)
                 error = e.args[0].split('\n')[0]
                 response.body = str(
                     {"success": False, "status": False, "message": error})
@@ -234,7 +234,7 @@ def deleteUser():
         elif 'user_id' in data.keys():
             try:
                 cur.execute(
-                    '''delete from public.registered_users where user_id=%s''', (data['user_id']))
+                    '''delete from public.registered_users where user_id=%s''', (data['user_id'],))
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "User Deleted Successfully"})
@@ -411,11 +411,12 @@ def addDisease():
         data = request.json
         if data is None or data == {}:
             raise ValueError
-        elif 'disease_category_id' in data.keys() and 'disease' in data.keys():
+        elif 'disease_category_id' in data.keys() and 'disease' in data.keys() and 'disease_image_url' in data.keys():
             try:
-                d1 = (data['disease_category_id'], data['disease'])
+                d1 = (data['disease_category_id'],
+                      data['disease'], data['disease_image_url'])
                 cur.execute(
-                    '''insert into public.diseases(disease_category_id,disease) values (%s,%s)''', d1)
+                    '''insert into public.diseases(disease_category_id,disease,disease_image_url) values (%s,%s,%s)''', d1)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Disease Added Successfully"})
@@ -442,12 +443,12 @@ def updateDisease():
         data = request.json
         if data is None or data == {}:
             raise ValueError
-        elif 'disease_id' in data.keys() and 'disease' in data.keys() and 'disease_category_id' in data.keys():
+        elif 'disease_id' in data.keys() and 'disease' in data.keys() and 'disease_category_id' in data.keys() and 'disease_image_url' in data.keys():
             try:
-                d1 = (data['disease'], data['disease_category_id'],
+                d1 = (data['disease'], data['disease_category_id'], data['disease_image_url'],
                       data['disease_id'])
                 cur.execute(
-                    '''update public.diseases set disease=%s , disease_category_id= %s where disease_id=%s''', d1)
+                    '''update public.diseases set disease=%s , disease_category_id= %s, disease_image_url=%s where disease_id=%s''', d1)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Disease Updated Successfully"})
@@ -508,7 +509,7 @@ def addGene():
         elif 'gene' in data.keys() and 'gene_type' in data.keys():
             try:
                 cur.execute(
-                    '''insert into public.genes(gene,gene_type) values(%s,%s)''', (data['gene'], data['gene_type']))
+                    '''insert into public.genes(gene) values(%s)''', (data['gene'], ))
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Gene Added Successfully"})
@@ -535,10 +536,10 @@ def updateGene():
         data = request.json
         if data == {} or data is None:
             raise ValueError
-        elif 'gene' in data.keys() and 'gene_type' in data.keys() and 'gene_id' in data.keys():
+        elif 'gene' in data.keys() and 'gene_id' in data.keys():
             try:
-                cur.execute(
-                    "update public.genes set gene=%s, gene_type=%s where gene_id=%s", (data['gene'], data['gene_type'], data['gene_id']))
+                cur.execute('''update public.genes set gene=%s where gene_id=%s''',
+                            (data['gene'], data['gene_id']))
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Gene Updated Successfully"})
@@ -568,7 +569,7 @@ def deleteGene():
         elif 'gene_id' in data.keys():
             try:
                 p = (data['gene_id'],)
-                cur.execute('''delete from public.genes where gene=%s''', p)
+                cur.execute('''delete from public.genes where gene_id=%s''', p)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Gene Deleted Successfully"})
@@ -681,6 +682,74 @@ def deleteSymptom():
     return ast.literal_eval(response.body)
 
 
+@app.post('/getDocumentList')
+def getDocumentList():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'user_id' in data.keys():
+            try:
+                cur.execute(
+                    '''select doc_type, doc_url from public.documents where user_id=%s''', (data['user_id'],))
+                d = [dict(zip([col[0] for col in cur.description], row))
+                     for row in cur]
+                b = {"success": True, "status": True,
+                     "message": "Document List", "result": str(d)}
+                response.body = str(b)
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+
+    except KeyError:
+        response.status = 409
+        return
+    response.headers['Content-Type'] = 'application/json'
+    rb = ast.literal_eval(response.body)
+    result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
+    if result is not None:
+        rb['result'] = result
+    return rb
+
+
+@app.post('/getPatientsList')
+def getPatientsList():
+    try:
+        cur.execute('''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users where user_type=%s''', ("0",))
+        d = [dict(zip([col[0] for col in cur.description], row))
+             for row in cur]
+        for i in d:
+            i['date_of_birth'] = i['date_of_birth'].strftime(
+                "%Y-%m-%d %H:%M:%S")
+        b = {"success": True, "status": True,
+             "message": "Patient List", "result": str(d)}
+        response.body = str(b)
+    except Exception as e:
+        error = e.args[0].split('\n')[0]
+        response.body = str(
+            {"success": False, "status": False, "message": error})
+    response.headers['Content-Type'] = 'application/json'
+    rb = ast.literal_eval(response.body)
+    result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
+    if result is not None:
+        rb['result'] = result
+    return rb
+
+# @app.post('/getDiseaseList')
+# def getDiseaseList():
+#     try:
+#         data = request.json
+#         if data is None or data == {}:
+#             raise ValueError
+#         elif
+
+
 @app.post('/postToS3')
 def postFileToS3():
     try:
@@ -697,7 +766,16 @@ def postFileToS3():
         client.upload_file(fps, 'gene-onto', folder +
                            '{}'.format(data.filename))
         os.remove(fps)
-        url = "http://s3-" + myr + ".amazonaws.com/gene-onto/" + folder + data.filename
+        d = client.generate_presigned_post(
+            Bucket='gene-onto',
+            Key=folder + data.filename
+        )
+        url = client.generate_presigned_url('get_object', Params={  #
+            'Bucket': 'gene-onto', 'Key': folder + data.filename}, ExpiresIn=604800)
+        print(fps)
+        print(d)
+        print(url.lower())
+        url = "https://s3-" + myr + ".amazonaws.com/gene-onto/" + folder + data.filename
         response.body = str(
             {"success": True, "status": True, "message": "Document Posted to Bucket Successfully", "location": url})
     except Exception as e:

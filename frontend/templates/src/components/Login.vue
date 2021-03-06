@@ -31,8 +31,8 @@
           <form @submit="onLogin">
             <div class="login-main">
               <input
-                :ref="username.ref"
-                v-model="username.value"
+                :ref="useremail.ref"
+                v-model="useremail.value"
                 class="box1 border1"
               />
               <input
