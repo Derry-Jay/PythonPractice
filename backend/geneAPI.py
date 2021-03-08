@@ -438,13 +438,10 @@ def addDisease():
         return
     except KeyError:
         response.status = 409
-        if 'disease_category_id' not in data.keys() and 'disease' in data.keys() and 'disease_image_url' in data.keys():
-            response.body = str(
-                {"success": False, "status": False, "message": "Please Provide Disease Category"})
-        elif 'disease' not in data.keys() and 'disease_category_id' in data.keys() and 'disease_image_url' in data.keys():
+        if 'disease' not in data.keys() and 'disease_image_url' in data.keys():
             response.body = str(
                 {"success": False, "status": False, "message": "Please Provide Disease Name"})
-        elif 'disease_image_url' not in data.keys() and 'disease_category_id' in data.keys() and 'disease' in data.keys():
+        elif 'disease_image_url' not in data.keys() and 'disease' in data.keys():
             response.body = str(
                 {"success": False, "status": False, "message": "Please Provide Disease Image"})
         else:
