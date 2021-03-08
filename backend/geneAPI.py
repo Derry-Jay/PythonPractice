@@ -27,14 +27,9 @@ for bucket in s3.buckets.all():
 
 #  and user_name and user_mail= and password=
 #
-# %s,%s,%s,%s
+#
 # cur.execute()
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
+# cur.execute('''insert into  values(%s,%s,%s,%s)''',())
 # cur.execute('''''')
 # cur.execute('''''')
 # cur.execute('''''')
@@ -127,8 +122,11 @@ def register():
                         cur.execute(
                             '''insert into public.registered_users(user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type, password) values (%s , %s , %s , %s , %s , %s , %s , %s)''', user_data)
                         con.commit()
+                        cur.execute(
+                            '''select user_id from public.registered_users where user_name=%s and date_of_birth=%s and gender=%s and mobile_number=%s and user_email=%s and pincode=%s and user_type=%s and password=%s''', user_data)
+                        b = cur.fetchone()[0]
                         response.body = str(
-                            {"success": True, "status": True, "message": "User Registered Successfully"})
+                            {"success": True, "status": True, "message": "User Registered Successfully", "user_id": b})
                     except Exception as e:
                         error = e.args[0].split('\n')[0]
                         response.body = str(
@@ -266,8 +264,11 @@ def storeDocs():
                 cur.execute(
                     '''insert into public.documents(user_id, doc_type, doc_url) values(%s,%s,%s)''', (data['user_id'], data['doc_type'], data['doc_url']))
                 con.commit()
+                cur.execute(
+                    '''select doc_id from public.documents where user_id=%s and doc_type=%s and doc_url=%s''', (data['user_id'], data['doc_type'], data['doc_url']))
+                a = cur.fetchone()[0]
                 response.body = str(
-                    {"success": True, "status": True, "message": "Document Uploaded Successfully"})
+                    {"success": True, "status": True, "message": "Document Uploaded Successfully", "doc_id": a})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -326,8 +327,11 @@ def addDiseaseCategory():
                 cur.execute(
                     '''insert into public.disease_categories(disease_category) values(%s)''', (data['disease_category'],))
                 con.commit()
+                cur.execute(
+                    '''select disease_category_id from public.disease_categories where disease_category=%s''', (data['disease_category'],))
+                c = cur.fetchone()[0]
                 response.body = str(
-                    {"success": True, "status": True, "message": "Disease Category Added Successfully"})
+                    {"success": True, "status": True, "message": "Disease Category Added Successfully", "disease_category_id": c})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -384,7 +388,7 @@ def deleteDiseaseCategory():
         elif 'disease_category_id' in data.keys():
             try:
                 cur.execute(
-                    '''delete from public.disease_categories where disease_category_id = %s''', (data['disease_category_id']))
+                    '''delete from public.disease_categories where disease_category_id = %s''', (data['disease_category_id'],))
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Disease Category Deleted Successfully"})
@@ -418,8 +422,11 @@ def addDisease():
                 cur.execute(
                     '''insert into public.diseases(disease_category_id,disease,disease_image_url) values (%s,%s,%s)''', d1)
                 con.commit()
+                cur.execute(
+                    '''select disease_id from public.diseases where disease=%s''', (data['disease'],))
+                w = cur.fetchone()[0]
                 response.body = str(
-                    {"success": True, "status": True, "message": "Disease Added Successfully"})
+                    {"success": True, "status": True, "message": "Disease Added Successfully", "disease_id": w})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -431,7 +438,19 @@ def addDisease():
         return
     except KeyError:
         response.status = 409
-        return
+        if 'disease_category_id' not in data.keys() and 'disease' in data.keys() and 'disease_image_url' in data.keys():
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide Disease Category"})
+        elif 'disease' not in data.keys() and 'disease_category_id' in data.keys() and 'disease_image_url' in data.keys():
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide Disease Name"})
+        elif 'disease_image_url' not in data.keys() and 'disease_category_id' in data.keys() and 'disease' in data.keys():
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide Disease Image"})
+        else:
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide The Necessary Parameters"})
+        return ast.literal_eval(response.body)
 
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
@@ -691,7 +710,7 @@ def getDocumentList():
         elif 'user_id' in data.keys():
             try:
                 cur.execute(
-                    '''select doc_type, doc_url from public.documents where user_id=%s''', (data['user_id'],))
+                    '''select doc_id,doc_type, doc_url from public.documents where user_id=%s''', (data['user_id'],))
                 d = [dict(zip([col[0] for col in cur.description], row))
                      for row in cur]
                 b = {"success": True, "status": True,
@@ -741,13 +760,41 @@ def getPatientsList():
         rb['result'] = result
     return rb
 
-# @app.post('/getDiseaseList')
-# def getDiseaseList():
-#     try:
-#         data = request.json
-#         if data is None or data == {}:
-#             raise ValueError
-#         elif
+
+@app.post('/getCategoryBasedDiseaseList')
+def getCategoryBasedDiseaseList():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'disease_category_id' in data.keys():
+            try:
+                cur.execute(
+                    '''select disease_id,disease,disease_image_url from public.diseases where disease_category_id=%s''', (data['disease_category_id'],))
+                d = [dict(zip([col[0] for col in cur.description], row))
+                     for row in cur]
+                b = {"success": True, "status": True,
+                     "message": "Disease List", "result": str(d)}
+                response.body = str(b)
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+
+    except KeyError:
+        response.status = 409
+        return
+    response.headers['Content-Type'] = 'application/json'
+    rb = ast.literal_eval(response.body)
+    result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
+    if result is not None:
+        rb['result'] = result
+    return rb
 
 
 @app.post('/postToS3')
