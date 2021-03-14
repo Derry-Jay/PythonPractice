@@ -14,6 +14,8 @@ emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$')
 mc = pm.MongoClient("mongodb://localhost:27017")
+db = mc['local']
+col = db['gene_test_results']
 con = pypg.connect(user='postgres', password='password', database='postgres')
 cur = con.cursor()
 mys = boto3.session.Session(
@@ -25,14 +27,10 @@ s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
-#  and user_name and user_mail= and password=
-#
+# and user_name and user_mail= and password=
 #
 # cur.execute()
-# cur.execute('''insert into  values(%s,%s,%s,%s)''',())
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
+# cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')
 # cur.execute('''''')
 # cur.execute('''''')
@@ -44,9 +42,9 @@ for bucket in s3.buckets.all():
 # @app.
 # @app.
 # @app.
-# data['']
-# %s
-# , data['']
+#
+#
+#
 
 
 @app.post('/login')
@@ -85,7 +83,7 @@ def login():
                     response.body = str(
                         {"success": False, "status": False, "message": error})
             else:
-                raise ValueError
+                raise KeyError
         except (TypeError, KeyError):
             raise ValueError
 
@@ -95,7 +93,17 @@ def login():
 
     except KeyError:
         response.status = 409
-        return
+        response.headers['Content-Type'] = 'application/json'
+        if 'user_email' in data.keys() and data['user_email'] != "" and 'password' not in data.keys():
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide Password"})
+        elif 'password' in data.keys() and data['password'] != "" and 'user_email' not in data.keys():
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide Email"})
+        else:
+            response.body = str(
+                {"success": False, "status": False, "message": "Please Provide The Necessary Parameters"})
+        return ast.literal_eval(response.body)
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
@@ -522,13 +530,53 @@ def addGene():
         data = request.json
         if data is None or data == {}:
             raise ValueError
-        elif 'gene' in data.keys() and 'gene_type' in data.keys():
+        elif 'gene' in data.keys():
             try:
+                dt = (data['gene'].upper(), )
                 cur.execute(
-                    '''insert into public.genes(gene) values(%s)''', (data['gene'], ))
-                con.commit()
+                    '''select count(gene_id) from public.genes where gene=%s''', dt)
+                c = cur.fetchone()[0]
+                if c == 0:
+                    cur.execute(
+                        '''insert into public.genes(gene) values(%s)''', (data['gene'], ))
+                    con.commit()
+                    cur.execute(
+                        '''select gene_id from public.genes where gene=%s''', (data['gene'],))
+                    d = cur.fetchone()[0]
+                    response.body = str(
+                        {"success": True, "status": True, "message": "Gene Added Successfully", "gene_id": d})
+                else:
+                    response.body = str(
+                        {"success": True, "status": True, "message": "Gene Added Already"})
+            except Exception as e:
+                error = e.args[0].split('\n')[0]
                 response.body = str(
-                    {"success": True, "status": True, "message": "Gene Added Successfully"})
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+    except KeyError:
+        response.status = 409
+        return
+
+    response.headers['Content-Type'] = 'application/json'
+    return ast.literal_eval(response.body)
+
+
+@app.post('/storeResult')
+def storeResult():
+    try:
+        data = request.json
+        if data is None or data == {}:
+            raise ValueError
+        elif 'user_id' in data.keys() and 'patient_gene_ID' in data.keys() and 'molecular_value' in data.keys() and 'biological_process' in data.keys() and 'cellular_component' in data.keys() and 'cross_ontology_value' in data.keys() and 'cross_ontology_result' in data.keys() and 'possible_disease_ID' in data.keys() and 'possible_disease Name' in data.keys() and 'pharmatist_id' in data.keys():
+            try:
+                upd = col.insert_one(data)
+                id = str(upd.inserted_id)
+                response.body = str(
+                    {"success": True, "status": True, "message": "Result Stored Successfully", "result_id": id})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -830,4 +878,4 @@ def postFileToS3():
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port='8000')
+    app.run(host='127.0.0.1', port='8000', reloader=True)
