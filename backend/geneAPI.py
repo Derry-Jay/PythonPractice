@@ -571,7 +571,7 @@ def storeResult():
         data = request.json
         if data is None or data == {}:
             raise ValueError
-        elif 'user_id' in data.keys() and 'patient_gene_ID' in data.keys() and 'molecular_value' in data.keys() and 'biological_process' in data.keys() and 'cellular_component' in data.keys() and 'cross_ontology_value' in data.keys() and 'cross_ontology_result' in data.keys() and 'possible_disease_ID' in data.keys() and 'possible_disease Name' in data.keys() and 'pharmatist_id' in data.keys():
+        elif 'patient_id' in data.keys() and 'patient_gene_id' in data.keys() and 'molecular_value' in data.keys() and 'biological_process' in data.keys() and 'cellular_component' in data.keys() and 'molecular_value_average' in data.keys() and 'biological_process_average' in data.keys() and 'cellular_component_average' in data.keys() and 'cross_ontology_value' in data.keys() and 'cross_ontology_result' in data.keys() and 'possible_disease_id' in data.keys() and 'possible_disease Name' in data.keys() and 'pharmatist_id' in data.keys() and 'symptoms' in data.keys() and 'preventive_measures' in data.keys():
             try:
                 upd = col.insert_one(data)
                 id = str(upd.inserted_id)
@@ -588,6 +588,7 @@ def storeResult():
         return
     except KeyError:
         response.status = 409
+        response.body = str({"success": False, "status": False, "message": ""})
         return
 
     response.headers['Content-Type'] = 'application/json'
