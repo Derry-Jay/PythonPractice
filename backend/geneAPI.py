@@ -33,9 +33,6 @@ for bucket in s3.buckets.all():
 # cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')
 # cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
-# cur.execute('''''')
 # @app.delete
 # @app.
 # @app.
@@ -332,14 +329,27 @@ def addDiseaseCategory():
             raise ValueError
         elif 'disease_category' in data.keys():
             try:
+                dt = (data['disease_category'].lower(),)
                 cur.execute(
-                    '''insert into public.disease_categories(disease_category) values(%s)''', (data['disease_category'],))
-                con.commit()
-                cur.execute(
-                    '''select disease_category_id from public.disease_categories where disease_category=%s''', (data['disease_category'],))
-                c = cur.fetchone()[0]
-                response.body = str(
-                    {"success": True, "status": True, "message": "Disease Category Added Successfully", "disease_category_id": c})
+                    '''select count(disease_category_id) from public.disease_categories where disease_category=%s''', dt)
+                b = cur.fetchone()[0]
+                if b == 0:
+                    try:
+                        cur.execute(
+                            '''insert into public.disease_categories(disease_category) values(%s)''', dt)
+                        con.commit()
+                        cur.execute(
+                            '''select disease_category_id from public.disease_categories where disease_category=%s''', (data['disease_category'],))
+                        c = cur.fetchone()[0]
+                        response.body = str(
+                            {"success": True, "status": True, "message": "Disease Category Added Successfully", "disease_category_id": c})
+                    except Exception as e:
+                        error = e.args[0].split('\n')[0]
+                        response.body = str(
+                            {"success": False, "status": False, "message": error})
+                else:
+                    response.body = str(
+                        {"success": True, "status": True, "message": "Gene is Already Added"})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -423,18 +433,30 @@ def addDisease():
         data = request.json
         if data is None or data == {}:
             raise ValueError
-        elif 'disease_category_id' in data.keys() and 'disease' in data.keys() and 'disease_image_url' in data.keys():
+        elif 'disease' in data.keys() and 'disease_image_url' in data.keys():
             try:
-                d1 = (data['disease_category_id'],
-                      data['disease'], data['disease_image_url'])
+                d1 = (data['disease'].lower(), data['disease_image_url'])
+                d2 = (data['disease'].lower(),)
                 cur.execute(
-                    '''insert into public.diseases(disease_category_id,disease,disease_image_url) values (%s,%s,%s)''', d1)
-                con.commit()
-                cur.execute(
-                    '''select disease_id from public.diseases where disease=%s''', (data['disease'],))
-                w = cur.fetchone()[0]
-                response.body = str(
-                    {"success": True, "status": True, "message": "Disease Added Successfully", "disease_id": w})
+                    '''select count(disease_id) from public.diseases where disease=%s''', d2)
+                f = cur.fetchone()[0]
+                if f == 0:
+                    try:
+                        cur.execute(
+                            '''insert into public.diseases(disease_category_id,disease,disease_image_url) values (%s,%s,%s)''', d1)
+                        con.commit()
+                        cur.execute(
+                            '''select disease_id from public.diseases where disease=%s''', d2)
+                        w = cur.fetchone()[0]
+                        response.body = str(
+                            {"success": True, "status": True, "message": "Disease Added Successfully", "disease_id": w})
+                    except Exception as e:
+                        error = e.args[0].split('\n')[0]
+                        response.body = str(
+                            {"success": False, "status": False, "message": error})
+                else:
+                    response.body = str(
+                        {"success": True, "status": True, "message": "Disease Already Added"})
             except Exception as e:
                 error = e.args[0].split('\n')[0]
                 response.body = str(
@@ -537,14 +559,19 @@ def addGene():
                     '''select count(gene_id) from public.genes where gene=%s''', dt)
                 c = cur.fetchone()[0]
                 if c == 0:
-                    cur.execute(
-                        '''insert into public.genes(gene) values(%s)''', (data['gene'], ))
-                    con.commit()
-                    cur.execute(
-                        '''select gene_id from public.genes where gene=%s''', (data['gene'],))
-                    d = cur.fetchone()[0]
-                    response.body = str(
-                        {"success": True, "status": True, "message": "Gene Added Successfully", "gene_id": d})
+                    try:
+                        cur.execute(
+                            '''insert into public.genes(gene) values(%s)''', dt)
+                        con.commit()
+                        cur.execute(
+                            '''select gene_id from public.genes where gene=%s''', dt)
+                        d = cur.fetchone()[0]
+                        response.body = str(
+                            {"success": True, "status": True, "message": "Gene Added Successfully", "gene_id": d})
+                    except Exception as e:
+                        error = e.args[0].split('\n')[0]
+                        response.body = str(
+                            {"success": False, "status": False, "message": error})
                 else:
                     response.body = str(
                         {"success": True, "status": True, "message": "Gene Added Already"})
@@ -575,6 +602,10 @@ def storeResult():
             try:
                 upd = col.insert_one(data)
                 id = str(upd.inserted_id)
+                utd = (data['patient_id'], id)
+                cur.execute(
+                    '''insert into public.user_test_results values(%s,%s)''', utd)
+                con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "Result Stored Successfully", "result_id": id})
             except Exception as e:
