@@ -6,6 +6,7 @@ import logging
 import pymongo as pm
 import psycopg2 as pypg
 from botocore.config import Config
+from operations.latlong import LatLong
 from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(user_id) from public.registered_users where '''
 snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
@@ -28,7 +29,7 @@ for bucket in s3.buckets.all():
     print(bucket.name)
 
 # and user_name and user_mail= and password=
-#
+# ""
 # cur.execute()
 # cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')
@@ -58,7 +59,8 @@ def login():
             if ('user_email' in data.keys() and 'password' in data.keys()):
                 try:
                     ud = (data['user_email'], data['password'])
-                    cur.execute(cqs + "user_email=%s and password=%s", ud)
+                    cur.execute(
+                        cqs + '''user_email=%s and password=%s''', ud)
                     a = cur.fetchone()[0]
                     if a == 1:
                         try:
