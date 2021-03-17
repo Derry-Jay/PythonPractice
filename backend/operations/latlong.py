@@ -70,6 +70,7 @@ class LatLong:
                     continue
             else:
                 continue
+        return g
 
     def putData(self):
         print("++++++++++++++++++++++++++++++++++++++++")
