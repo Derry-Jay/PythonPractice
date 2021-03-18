@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Login from '@/components/Login'
 const routerOptions = [
   { path: '/welcome', component: 'Welcome' },
   { path: '/login', component: 'Login' },
@@ -17,5 +18,6 @@ const routes = routerOptions.map(route => {
 Vue.use(Router)
 export default new Router({
   routes,
+  base: process.env.BASE_URL,
   mode: 'history'
 })

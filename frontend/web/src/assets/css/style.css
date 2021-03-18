@@ -1,14 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,100,300,400italic,700|EB+Garamond);
 
-@charset "utf-8";
+/* @charset "utf-8"; */
 
-@-webkit-viewport {
+/* @-webkit-viewport {
   width: device-width;
 }
 
 @-moz-viewport {
   width: device-width;
-}
+} */
 
 @-ms-viewport {
   width: device-width;
@@ -86,7 +86,7 @@ table,th, td {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  /* font-smoothing: antialiased; */
   text-rendering: optimizeLegibility;
 }
 
@@ -277,14 +277,14 @@ strong {
 }
 
 .backimg {
-  no-repeatcenter center fixed; 
+  /* no-repeatcenter center fixed;  */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 /* TRANSITION BACKGROUN COLOR */
-* {
+/* * {
   -webkit-transition: background-color 0.5s ease;
   ;
   -moz-transition: background-color 0.5s ease;
@@ -293,7 +293,7 @@ strong {
   ;
   -o-transition: background-color 0.5s ease;
   ;
-}
+} */
 /* styles */
 .hero100 {
   position: relative;
@@ -873,11 +873,11 @@ a.vale:hover {
   overflow: hidden;
 }
 
-[class*="BR"] {
+/* [class*="BR"] {
 }
 
 [class*="R6"] {
-}
+} */
 
 [class*="NF"] {
   background: transparent;
@@ -1560,7 +1560,7 @@ ul.blogsocico li.youtube a:hover, #sidebar ul.blogsocico li.youtube a:hover {
   overflow: hidden;
   position: relative;
   float: left;
-  cursor: url(../img/plus_cursor.cur),url(../img/plus_cursor.png),alias;
+  cursor: url(../img/plus_cursor.png),alias;
 }
 
 .gallerymore > ul > li a > img {
@@ -1594,9 +1594,9 @@ ul.blogsocico li.youtube a:hover, #sidebar ul.blogsocico li.youtube a:hover {
   -webkit-overflow-scrolling: touch;
 }
 
-.themodal-overlay > * {
+/* .themodal-overlay > * {
   -webkit-transform: translateZ(0px);
-}
+} */
 
 .themodal-overlay {
   background: rgba(250, 250, 250, 0.95);
