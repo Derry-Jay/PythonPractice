@@ -29,7 +29,7 @@ for bucket in s3.buckets.all():
     print(bucket.name)
 
 # and user_name and user_mail= and password=
-# ""
+# 
 # cur.execute()
 # cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')

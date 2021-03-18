@@ -53,22 +53,25 @@
     <div class="colw_6 paddbott100 spec-r"></div>
   </div>
 </template>
-<style src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"></style>
-<style src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"></style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<style src="{{ url_for('static',filename='css/owl.carousel.css') }}"></style>
-<style src="{{ url_for('static',filename='css/overlay.css') }}"></style>
-<style src="{{ url_for('static',filename='css/grid.min.css') }}"></style>
-<style src="{{ url_for('static',filename='css/menu.css') }}"></style>
-<style src="{{ url_for('static',filename='css/style.css') }}"></style>
-<style src="{{ url_for('static',filename='css/lightgallery.min.css') }}"></style>
-<script src="{{ url_for('static',filename='js/jquery.matchHeight-min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/animsition.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/jquery.parallax-scroll.js') }}"></script>
-<script src="{{ url_for('static',filename='js/owl.carousel.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/jquery.cbpQTRotator.min.js') }}"></script>
-<script src="{{ url_for('static',filename='js/functions.js') }}"></script>
-<script src="{{ url_for('static',filename='js/particle.js') }}"></script>
+<script type="text/javascript">
+export default{
+  mounted () {
+    let script1 = document.createElement('script')
+    let script2 = document.createElement('script')
+    let script3 = document.createElement('script')
+    script1.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js')
+    script2.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    script3.setAttribute('src', 'http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+  }
+}
+</script>
+<style lang="css or less">
+@import "../assets/css/menu.css";
+@import "../assets/css/style.css";
+@import "../assets/css/overlay.css";
+@import "../assets/css/grid.min.css";
+@import "../assets/css/owl.carousel.css";
+@import "../assets/css/lightgallery.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css";
+</style>
