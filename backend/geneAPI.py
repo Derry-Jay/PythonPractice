@@ -985,4 +985,3 @@ if __name__ == "__main__":
     app.install(CorsPlugin(
         origins=['http://localhost:8080/#/', 'http://localhost:8080/', 'http://localhost:8080']))
     app.run(host='127.0.0.1', port='8000', reloader=True)
-#  another.domain.org.if.wed.domains.m
