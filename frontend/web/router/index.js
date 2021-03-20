@@ -4,7 +4,7 @@ import Router from 'vue-router'
 const routerOptions = [
   { path: '/welcome', component: 'Welcome' },
   { path: '/login', component: 'Login' },
-  { path: '/signup', component: 'Signup' },
+  { path: '/register', component: 'Register' },
   { path: '/admin', component: 'Admin' },
   { path: '/cluster', component: 'Cluster' }
 //   { path: '/disease', component: 'Disease'}

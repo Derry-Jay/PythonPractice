@@ -8,6 +8,7 @@ import psycopg2 as pypg
 from botocore.config import Config
 from operations.latlong import LatLong
 from bottle import Bottle, request, response, post, get, put, delete, run
+from truckpad.bottle.cors import CorsPlugin, enable_cors
 cqs = '''select count(user_id) from public.registered_users where '''
 snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
 app = Bottle(__name__)
@@ -29,7 +30,7 @@ for bucket in s3.buckets.all():
     print(bucket.name)
 
 # and user_name and user_mail= and password=
-# 
+#
 # cur.execute()
 # cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')
@@ -40,16 +41,18 @@ for bucket in s3.buckets.all():
 # @app.
 # @app.
 # @app.
-#
+# ast.literal_eval(request.body.read().decode('utf8'))
 #
 #
 
 
 @app.post('/login')
+@enable_cors
 def login():
     try:
         try:
-            data = request.json
+            data = request.json if request.json is not None else ast.literal_eval(
+                request.body.read().decode('utf8'))
         except:
             raise ValueError
 
@@ -103,15 +106,17 @@ def login():
             response.body = str(
                 {"success": False, "status": False, "message": "Please Provide The Necessary Parameters"})
         return ast.literal_eval(response.body)
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/register')
+@enable_cors
 def register():
     try:
         try:
-            data = request.json
+            data = request.json if request.json is not None else ast.literal_eval(request.body.read().decode('utf8'))
         except:
             raise ValueError
         if data is None or data == {}:
@@ -150,14 +155,17 @@ def register():
     except KeyError:
         response.status = 409
         return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/userDetails')
+@enable_cors
 def getUserDetails():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
@@ -189,6 +197,7 @@ def getUserDetails():
     except KeyError:
         response.status = 409
         return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     rb = ast.literal_eval(response.body)
     result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
@@ -198,9 +207,11 @@ def getUserDetails():
 
 
 @app.put('/updateUserDetails')
+@enable_cors
 def updateUserData():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
@@ -226,14 +237,17 @@ def updateUserData():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteUser')
+@enable_cors
 def deleteUser():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
@@ -256,14 +270,17 @@ def deleteUser():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/storeDocs')
+@enable_cors
 def storeDocs():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys() and 'doc_type' in data.keys() and 'doc_url' in data.keys():
@@ -289,14 +306,17 @@ def storeDocs():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteDoc')
+@enable_cors
 def deleteDocument():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'doc_id' in data.keys():
@@ -319,14 +339,17 @@ def deleteDocument():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/addDiseaseCategory')
+@enable_cors
 def addDiseaseCategory():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease_category' in data.keys():
@@ -365,14 +388,17 @@ def addDiseaseCategory():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.put('/updateDiseaseCategory')
+@enable_cors
 def updateDiseaseCategory():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data == {} or data is None:
             raise ValueError
         elif 'disease_category' in data.keys() and 'disease_category_id' in data.keys():
@@ -395,14 +421,17 @@ def updateDiseaseCategory():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteDiseaseCategory')
+@enable_cors
 def deleteDiseaseCategory():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease_category_id' in data.keys():
@@ -425,14 +454,17 @@ def deleteDiseaseCategory():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/addDisease')
+@enable_cors
 def addDisease():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease' in data.keys() and 'disease_image_url' in data.keys():
@@ -481,14 +513,17 @@ def addDisease():
                 {"success": False, "status": False, "message": "Please Provide The Necessary Parameters"})
         return ast.literal_eval(response.body)
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.put('/updateDisease')
+@enable_cors
 def updateDisease():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease_id' in data.keys() and 'disease' in data.keys() and 'disease_category_id' in data.keys() and 'disease_image_url' in data.keys():
@@ -513,14 +548,17 @@ def updateDisease():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteDisease')
+@enable_cors
 def deleteDisease():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease_id' in data.keys():
@@ -544,14 +582,17 @@ def deleteDisease():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/addGene')
+@enable_cors
 def addGene():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'gene' in data.keys():
@@ -590,14 +631,17 @@ def addGene():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/storeResult')
+@enable_cors
 def storeResult():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'patient_id' in data.keys() and 'patient_gene_id' in data.keys() and 'molecular_value' in data.keys() and 'biological_process' in data.keys() and 'cellular_component' in data.keys() and 'molecular_value_average' in data.keys() and 'biological_process_average' in data.keys() and 'cellular_component_average' in data.keys() and 'cross_ontology_value' in data.keys() and 'cross_ontology_result' in data.keys() and 'possible_disease_id' in data.keys() and 'possible_disease Name' in data.keys() and 'pharmatist_id' in data.keys() and 'symptoms' in data.keys() and 'preventive_measures' in data.keys():
@@ -624,14 +668,17 @@ def storeResult():
         response.body = str({"success": False, "status": False, "message": ""})
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.put('/updateGene')
+@enable_cors
 def updateGene():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data == {} or data is None:
             raise ValueError
         elif 'gene' in data.keys() and 'gene_id' in data.keys():
@@ -654,14 +701,17 @@ def updateGene():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteGene')
+@enable_cors
 def deleteGene():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'gene_id' in data.keys():
@@ -684,14 +734,17 @@ def deleteGene():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/addSymptom')
+@enable_cors
 def addSymptom():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data == {} or data is None:
             raise ValueError
         elif 'symptom' in data.keys():
@@ -715,14 +768,17 @@ def addSymptom():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.put('/updateSymptom')
+@enable_cors
 def updateSymptom():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'symptom' in data.keys() and 'symptom_id' in data.keys():
@@ -745,14 +801,17 @@ def updateSymptom():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.delete('/deleteSymptom')
+@enable_cors
 def deleteSymptom():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'symptom_id' in data.keys():
@@ -776,14 +835,17 @@ def deleteSymptom():
         response.status = 409
         return
 
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     return ast.literal_eval(response.body)
 
 
 @app.post('/getDocumentList')
+@enable_cors
 def getDocumentList():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
@@ -808,6 +870,7 @@ def getDocumentList():
     except KeyError:
         response.status = 409
         return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     rb = ast.literal_eval(response.body)
     result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
@@ -817,6 +880,7 @@ def getDocumentList():
 
 
 @app.post('/getPatientsList')
+@enable_cors
 def getPatientsList():
     try:
         cur.execute('''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users where user_type=%s''', ("0",))
@@ -832,6 +896,7 @@ def getPatientsList():
         error = e.args[0].split('\n')[0]
         response.body = str(
             {"success": False, "status": False, "message": error})
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     rb = ast.literal_eval(response.body)
     result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
@@ -841,9 +906,11 @@ def getPatientsList():
 
 
 @app.post('/getCategoryBasedDiseaseList')
+@enable_cors
 def getCategoryBasedDiseaseList():
     try:
-        data = request.json
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
         elif 'disease_category_id' in data.keys():
@@ -868,6 +935,7 @@ def getCategoryBasedDiseaseList():
     except KeyError:
         response.status = 409
         return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     response.headers['Content-Type'] = 'application/json'
     rb = ast.literal_eval(response.body)
     result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
@@ -877,7 +945,9 @@ def getCategoryBasedDiseaseList():
 
 
 @app.post('/postToS3')
+@enable_cors
 def postFileToS3():
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
     try:
         data = request.files['file']
         folder = ''
@@ -912,4 +982,7 @@ def postFileToS3():
 
 
 if __name__ == "__main__":
+    app.install(CorsPlugin(
+        origins=['http://localhost:8080/#/', 'http://localhost:8080/', 'http://localhost:8080']))
     app.run(host='127.0.0.1', port='8000', reloader=True)
+#  another.domain.org.if.wed.domains.m

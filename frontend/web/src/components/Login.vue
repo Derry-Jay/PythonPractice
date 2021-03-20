@@ -1,21 +1,26 @@
 <template>
-  <form @submit="login" id="login" method="post">
+  <form @submit="login" id="login">
     <input
         v-model="body.user_email"
         class="box1 border1"
         type="email"
-      />
+      /><br/>
     <input
         v-model="body.password"
         type="password"
         class="box1 border2"
-      />
+      /><br/>
     <button type="submit">Submit</button>
   </form>
 </template>
 <script type="text/javascript">
 export default {
-  el: '#login',
+  data () {
+    return {
+      body: {},
+      data: {}
+    }
+  },
   // mounted() {
   //   let script1 = document.createElement("script");
   //   let script2 = document.createElement("script");
@@ -29,7 +34,7 @@ export default {
   //     "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
   //   );
   //   script3.setAttribute(
-  //     "src",
+  //     "src",derryjey79@gmail.com Goodbye@12
   //     "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
   //   );
   //   document.head.appendChild(script1);
@@ -38,23 +43,23 @@ export default {
   // },
   methods: {
     async login () {
-      console.log(this.body)
       const request = new Request('http://localhost:8000/login', {
         method: 'POST',
         mode: 'cors',
         cache: 'default',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(this.body)
       })
       const res = await fetch(request)
-      const data = await res.json()
-      this.data = data
-      console.log(this.data)
-    }
-  },
-  data () {
-    return {
-      body: {},
-      data: {}
+      if (res.ok) {
+        const data = await res.json()
+        this.data = data
+        console.log(this.data)
+      } else {
+        console.log('hi')
+      }
     }
   }
 }
