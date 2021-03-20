@@ -6,7 +6,8 @@
           <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
           <nav>
             <ul>
-              <li><a class="out active animsition-link" href="home.jsp">HOME</a></li>
+              <a href="home.jsp"></a>
+              <li class="out active animsition-link"><router-link to="/home">HOME</router-link></li>
               <li class="line"><a class="out animsition-link" href="disease.jsp">Category</a></li>
               <li class="line"><a class="out animsition-link" href="asso.jsp">Gene List</a></li>
               <li class="line"><a class="out animsition-link" href="go.jsp">Search Gene</a></li>

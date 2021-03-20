@@ -21,26 +21,27 @@ export default {
       data: {}
     }
   },
-  // mounted() {
-  //   let script1 = document.createElement("script");
-  //   let script2 = document.createElement("script");
-  //   let script3 = document.createElement("script");
-  //   script1.setAttribute(
-  //     "src",
-  //     "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-  //   );
-  //   script2.setAttribute(
-  //     "src",
-  //     "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-  //   );
-  //   script3.setAttribute(
-  //     "src",derryjey79@gmail.com Goodbye@12
-  //     "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-  //   );
-  //   document.head.appendChild(script1);
-  //   document.head.appendChild(script2);
-  //   document.head.appendChild(script3);
-  // },
+  mounted () {
+    let script1 = document.createElement('script')
+    let script2 = document.createElement('script')
+    let script3 = document.createElement('script')
+    script1.setAttribute(
+      'src',
+      'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
+    )
+    script2.setAttribute(
+      'src',
+      'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+    )
+    script3.setAttribute(
+      'src',
+      'http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'
+    )
+    document.head.appendChild(script1)
+    document.head.appendChild(script2)
+    document.head.appendChild(script3)
+  },
+  // derryjey79@gmail.com Goodbye@12
   methods: {
     async login () {
       const request = new Request('http://localhost:8000/login', {

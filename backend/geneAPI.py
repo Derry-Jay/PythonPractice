@@ -7,8 +7,8 @@ import pymongo as pm
 import psycopg2 as pypg
 from botocore.config import Config
 from operations.latlong import LatLong
-from bottle import Bottle, request, response, post, get, put, delete, run
 from truckpad.bottle.cors import CorsPlugin, enable_cors
+from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(user_id) from public.registered_users where '''
 snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
 app = Bottle(__name__)
@@ -905,7 +905,7 @@ def getPatientsList():
     return rb
 
 
-@app.post('/getCategoryBasedDiseaseList')
+@app.post('/searchDiseases')
 @enable_cors
 def getCategoryBasedDiseaseList():
     try:
@@ -913,16 +913,17 @@ def getCategoryBasedDiseaseList():
             request.body.read().decode('utf8'))
         if data is None or data == {}:
             raise ValueError
-        elif 'disease_category_id' in data.keys():
+        elif 'pattern' in data.keys():
             try:
-                cur.execute(
-                    '''select disease_id,disease,disease_image_url from public.diseases where disease_category_id=%s''', (data['disease_category_id'],))
+                sdt = ('''%%''' + data['pattern'] + '''%%''',)
+                cur.execute('''select disease_id,disease,disease_image_url from public.diseases where disease like %s''', sdt)
                 d = [dict(zip([col[0] for col in cur.description], row))
                      for row in cur]
                 b = {"success": True, "status": True,
                      "message": "Disease List", "result": str(d)}
                 response.body = str(b)
             except Exception as e:
+                print(e)
                 error = e.args[0].split('\n')[0]
                 response.body = str(
                     {"success": False, "status": False, "message": error})
