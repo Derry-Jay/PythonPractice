@@ -907,7 +907,7 @@ def getPatientsList():
 
 @app.post('/searchDiseases')
 @enable_cors
-def getCategoryBasedDiseaseList():
+def getSearchedDiseases():
     try:
         data = request.json if request.json is not None else ast.literal_eval(
             request.body.read().decode('utf8'))
