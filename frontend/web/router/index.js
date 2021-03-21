@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Login from '@/components/Login'
 const routerOptions = [
   { path: '/welcome', component: 'Welcome' },
   { path: '/login', component: 'Login' },
