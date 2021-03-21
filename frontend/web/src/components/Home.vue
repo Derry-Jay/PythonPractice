@@ -6,13 +6,12 @@
           <div class="mobile-toggle"> <span></span> <span></span> <span></span> </div>
           <nav>
             <ul>
-              <a href="home.jsp"></a>
               <li class="out active animsition-link"><router-link to="/home">HOME</router-link></li>
-              <li class="line"><a class="out animsition-link" href="disease.jsp">Category</a></li>
-              <li class="line"><a class="out animsition-link" href="asso.jsp">Gene List</a></li>
-              <li class="line"><a class="out animsition-link" href="go.jsp">Search Gene</a></li>
-              <li class="line"><a class="out animsition-link" href="history.jsp">History</a></li>
-              <li class="line"><a class="out animsition-link" href="login.jsp">LOGOUT</a></li>
+              <li class="line"><router-link class=" out animsition-link" to="/disease">Category</router-link></li>
+              <li class="line"><router-link class="out animsition-link" to="/asso">Gene List</router-link></li>
+              <li class="line"><router-link class="out animsition-link" to="/go">Search Gene</router-link></li>
+              <li class="line"><router-link class="out animsition-link" to="/history">History</router-link></li>
+              <li class="line"><router-link class="out animsition-link" to="/login">LOGOUT</router-link></li>
             </ul>
           </nav>
         </div>

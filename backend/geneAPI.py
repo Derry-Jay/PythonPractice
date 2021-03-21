@@ -171,6 +171,7 @@ def getUserDetails():
         elif 'user_id' in data.keys():
             try:
                 q = (data['user_id'],)
+                ll = LatLong()
                 cur.execute(
                     snt + ''' where user_id=%s''', q)
                 dft = [dict(zip([col[0] for col in cur.description], row))
@@ -179,6 +180,7 @@ def getUserDetails():
                     fd = dft[0]
                     fd['date_of_birth'] = fd['date_of_birth'].strftime(
                         "%Y-%m-%d %H:%M:%S")
+                    fd['possible_location_co-ordinates'] = ll.getLatLongFromZipCodeAndPutToDict(fd['pincode'])
                     response.body = str(
                         {"success": True, "status": True, "message": "User Details", "result": str(fd)})
                 else:

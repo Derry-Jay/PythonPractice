@@ -14,6 +14,10 @@ class LatLong:
             self.lon = args[1] if args[1] is dc.Decimal else dc.Decimal(
                 args[1])
 
+    def putToDict(self):
+        d = {'latitude': str(self.lat), 'longitude': str(self.lon)}
+        return d
+
     def belongs_to(self, ll):
         flag = False
         for i in ll:
@@ -60,12 +64,12 @@ class LatLong:
             if m != None and m != '':
                 l = place.query_postal_code(m).dropna()
                 x = l.to_dict()
-                ao1 = LatLong()
-                print(x)
-                ao1.getLatLongFromDict(x)
-                ao1.putData()
-                if not(ao1.belongs_to(g)):
-                    g.append(ao1)
+                if 'latitude' in x.keys() and 'longitude' in x.keys():
+                    ao1 = LatLong(x['latitude'],x['longitude'])
+                    if not(ao1.belongs_to(g)):
+                        g.append(ao1)
+                    else:
+                        continue
                 else:
                     continue
             else:
@@ -82,14 +86,16 @@ class LatLong:
             lats = " S"
         print("Latitude: " + str(abs(self.lat)) + lats)
         print("-----------------------------------------")
-        if self.long > 0:
+        if self.lon > 0:
             longs = " E"
-        elif self.long < 0:
+        elif self.lon < 0:
             longs = " W"
         print("Longitude: " + str(abs(self.lon)) + longs)
         print("++++++++++++++++++++++++++++++++++++++++")
-
-    def putToDict(self):
-        d = {'latitude': self.lat, 'longitude': self.lon}
-        print(d)
-        return d
+    
+    def getLatLongFromZipCodeAndPutToDict(self, z):
+        lldl = []
+        lll = self.getLatLongFromZipCode(z)
+        for i in lll:
+            lldl.append(i.putToDict())
+        return lldl
