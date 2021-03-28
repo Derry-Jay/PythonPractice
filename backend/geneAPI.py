@@ -10,7 +10,7 @@ from operations.latlong import LatLong
 from truckpad.bottle.cors import CorsPlugin, enable_cors
 from bottle import Bottle, request, response, post, get, put, delete, run
 cqs = '''select count(user_id) from public.registered_users where '''
-snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
+snt = '''select user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude from public.registered_users'''
 app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
@@ -29,10 +29,10 @@ s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
-# and user_name and user_mail= and password=
+# and  and = and =
 #
+# cur.execute('''insert into public.registered_users(user_name, user_mail, pincode, password) values (%s , %s )''', ())
 # cur.execute()
-# cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
 # cur.execute('''''')
 # cur.execute('''''')
 # @app.delete
@@ -116,26 +116,30 @@ def login():
 def register():
     try:
         try:
-            data = request.json if request.json is not None else ast.literal_eval(request.body.read().decode('utf8'))
+            data = request.json if request.json is not None else ast.literal_eval(
+                request.body.read().decode('utf8'))
         except:
             raise ValueError
         if data is None or data == {}:
             raise ValueError
         try:
-            if 'user_name' in data.keys() and 'password' in data.keys() and 'user_type' in data.keys() and 'user_email' in data.keys() and emailpattern.match(data['user_email']) != None and passwordpattern.match(data['password']) != None:
+            if 'user_name' in data.keys() and 'password' in data.keys() and 'user_type' in data.keys() and 'user_email' in data.keys() and 'pincode' in data.keys() and 'gender' in data.keys() and 'mobile_number' in data.keys() and 'country' in data.keys() and emailpattern.match(data['user_email']) != None and passwordpattern.match(data['password']) != None:
                 ud = (data['user_name'], data['user_type'],
-                      data['user_email'], data['password'])
+                      data['user_email'], data['password'], data['mobile_number'])
                 cur.execute(
-                    cqs+'''user_name=%s and user_type=%s and user_email=%s and password=%s''', ud)
+                    cqs+'''user_name=%s and user_type=%s and user_email=%s and password=%s and mobile_number=%s''', ud)
                 if cur.fetchone()[0] == 0:
                     try:
+                        ao = LatLong()
+                        x = ao.getLatLongFromZipCodeAndCountryCode(
+                            data['pincode'], data['country'])
                         user_data = (data['user_name'],
-                                     data['date_of_birth'], data['gender'], data['mobile_number'], data['user_email'], data['pincode'], data['user_type'], data['password'])
+                                     data['user_type'], data['date_of_birth'], data['gender'], data['mobile_number'], data['user_email'], x['latitude'], x['longitude'], data['password'])
                         cur.execute(
-                            '''insert into public.registered_users(user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type, password) values (%s , %s , %s , %s , %s , %s , %s , %s)''', user_data)
+                            '''insert into public.registered_users(user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude, password) values(%s , %s , %s , %s , %s , %s , %s , %s , %s)''', user_data)
                         con.commit()
                         cur.execute(
-                            '''select user_id from public.registered_users where user_name=%s and date_of_birth=%s and gender=%s and mobile_number=%s and user_email=%s and pincode=%s and user_type=%s and password=%s''', user_data)
+                            '''select user_id from public.registered_users where user_name=%s and user_type=%s and date_of_birth=%s and gender=%s and mobile_number=%s and user_email=%s and latitude=%s and longitude=%s and password=%s''', user_data)
                         b = cur.fetchone()[0]
                         response.body = str(
                             {"success": True, "status": True, "message": "User Registered Successfully", "user_id": b})
@@ -180,7 +184,6 @@ def getUserDetails():
                     fd = dft[0]
                     fd['date_of_birth'] = fd['date_of_birth'].strftime(
                         "%Y-%m-%d %H:%M:%S")
-                    fd['possible_location_co-ordinates'] = ll.getLatLongFromZipCodeAndPutToDict(fd['pincode'])
                     response.body = str(
                         {"success": True, "status": True, "message": "User Details", "result": str(fd)})
                 else:
@@ -218,10 +221,10 @@ def updateUserData():
             raise ValueError
         elif 'user_id' in data.keys():
             ud1 = (data['user_name'], data['password'],
-                   data['date_of_birth'], data['gender'], data['pincode'], data['user_email'], data['mobile_number'], data['user_id'])
+                   data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_id'])
             try:
                 cur.execute(
-                    '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, pincode=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
+                    '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "User Details Updated Successfully"})
@@ -918,7 +921,8 @@ def getSearchedDiseases():
         elif 'pattern' in data.keys():
             try:
                 sdt = ('''%%''' + data['pattern'] + '''%%''',)
-                cur.execute('''select disease_id,disease,disease_image_url from public.diseases where disease like %s''', sdt)
+                cur.execute(
+                    '''select disease_id,disease,disease_image_url from public.diseases where disease like %s''', sdt)
                 d = [dict(zip([col[0] for col in cur.description], row))
                      for row in cur]
                 b = {"success": True, "status": True,

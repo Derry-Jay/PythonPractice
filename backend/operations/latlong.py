@@ -56,6 +56,15 @@ class LatLong:
         elif 'longitude' in a.keys():
             self.lon = a['longitude'] if a['longitude'] is dc.Decimal else dc.Decimal(
                 a['longitude'])
+    
+    def getLatLongFromZipCodeAndCountryCode(self, z, c):
+        if z is not None and c is not None and z != "" and c != "":
+            place = pgc.Nominatim(c)
+            l = place.query_postal_code(z).dropna()
+            return l.to_dict()
+        else:
+            return {}
+
 
     def getLatLongFromZipCode(self, m):
         g = []
