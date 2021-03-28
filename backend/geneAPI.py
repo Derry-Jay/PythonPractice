@@ -59,6 +59,26 @@ def generateCountStatement(tableName, data, primaryKey):
     return cqs
 
 
+def generateInsertStatement(tableName, data):
+    inst = '''insert into ''' + tableName + '''('''
+    k = 0
+    for i in data.keys():
+        inst += i
+        if k < len(data.keys()) - 1:
+            inst += ''', '''
+        else:
+            inst += ''') '''
+        k += 1
+    inst += '''values('''
+    for i in range(len(data.keys())):
+        inst += '''%s'''
+        if i < len(data.keys()) - 1:
+            inst += ''', '''
+        else:
+            inst += ''')'''
+    return inst
+
+
 def getListFromDict(data):
     g = []
     pk = ''
@@ -70,6 +90,7 @@ def getListFromDict(data):
     if pk != '':
         g.append(data[pk])
     return g
+
 
 # and  and = and =
 # cqs+
@@ -88,7 +109,6 @@ def getListFromDict(data):
 #        data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_id'])
 # cur.execute(
 #     '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
-#
 #
 
 
