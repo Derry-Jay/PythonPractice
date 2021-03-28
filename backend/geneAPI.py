@@ -9,8 +9,6 @@ from botocore.config import Config
 from operations.latlong import LatLong
 from truckpad.bottle.cors import CorsPlugin, enable_cors
 from bottle import Bottle, request, response, post, get, put, delete, run
-cqs = '''select count(user_id) from public.registered_users where '''
-snt = '''select user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude from public.registered_users'''
 app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
@@ -29,10 +27,54 @@ s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
+
+def generateUpdateStatement(tableName, data):
+    snt = '''update ''' + tableName + ''' set '''
+    k = 0
+    pk = ''
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            snt += (i + '''=%s''')
+            if k < len(data.keys()) - 2:
+                snt += ''', '''
+            else:
+                snt += ''' '''
+            k += 1
+        else:
+            pk = re.search('_id', i).string
+    snt += ('''where ''' + pk + '''=%s''')
+    return snt
+
+
+def generateCountStatement(tableName, data, primaryKey):
+    cqs = '''select count(''' + primaryKey + ''') from ''' + \
+        tableName + ''' where '''
+    k = 0
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            cqs += (i + '''=%s''')
+            if k < len(data.keys()) - 2:
+                cqs += ''' and '''
+            k += 1
+    return cqs
+
+
+def getListFromDict(data):
+    g = []
+    pk = ''
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            g.append(data[i])
+        else:
+            pk = re.search('_id', i).string
+    if pk != '':
+        g.append(data[pk])
+    return g
+
 # and  and = and =
-#
+# cqs+
 # cur.execute('''insert into public.registered_users(user_name, user_mail, pincode, password) values (%s , %s )''', ())
-# cur.execute()
+# cur.execute('''''')
 # cur.execute('''''')
 # cur.execute('''''')
 # @app.delete
@@ -42,6 +84,10 @@ for bucket in s3.buckets.all():
 # @app.
 # @app.
 # ast.literal_eval(request.body.read().decode('utf8'))
+# ud1 = (data['user_name'], data['password'],
+#        data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_id'])
+# cur.execute(
+#     '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
 #
 #
 
@@ -63,7 +109,7 @@ def login():
                 try:
                     ud = (data['user_email'], data['password'])
                     cur.execute(
-                        cqs + '''user_email=%s and password=%s''', ud)
+                        '''select count(user_id) from public.registered_users where user_email=%s and password=%s''', ud)
                     a = cur.fetchone()[0]
                     if a == 1:
                         try:
@@ -127,7 +173,7 @@ def register():
                 ud = (data['user_name'], data['user_type'],
                       data['user_email'], data['password'], data['mobile_number'])
                 cur.execute(
-                    cqs+'''user_name=%s and user_type=%s and user_email=%s and password=%s and mobile_number=%s''', ud)
+                    '''select count(user_id) from public.registered_users where user_name=%s and user_type=%s and user_email=%s and password=%s and mobile_number=%s''', ud)
                 if cur.fetchone()[0] == 0:
                     try:
                         ao = LatLong()
@@ -177,7 +223,7 @@ def getUserDetails():
                 q = (data['user_id'],)
                 ll = LatLong()
                 cur.execute(
-                    snt + ''' where user_id=%s''', q)
+                    '''select user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude from public.registered_users where user_id=%s''', q)
                 dft = [dict(zip([col[0] for col in cur.description], row))
                        for row in cur]
                 if dft is not None and dft != []:
@@ -220,11 +266,11 @@ def updateUserData():
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
-            ud1 = (data['user_name'], data['password'],
-                   data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_id'])
+            cqs = generateUpdateStatement(
+                'public.registered_users', data)
+            ud2 = getListFromDict(data)
             try:
-                cur.execute(
-                    '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
+                cur.execute(cqs, ud2)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "User Details Updated Successfully"})
