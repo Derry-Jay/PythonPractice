@@ -9,6 +9,7 @@ from botocore.config import Config
 from operations.latlong import LatLong
 from truckpad.bottle.cors import CorsPlugin, enable_cors
 from bottle import Bottle, request, response, post, get, put, delete, run
+from bson.objectid import ObjectId
 app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
@@ -92,10 +93,9 @@ def getListFromDict(data):
     return g
 
 
-# and  and = and =
+# and  and = and
 # cqs+
 # cur.execute('''insert into public.registered_users(user_name, user_mail, pincode, password) values (%s , %s )''', ())
-# cur.execute('''''')
 # cur.execute('''''')
 # cur.execute('''''')
 # @app.delete
@@ -103,10 +103,9 @@ def getListFromDict(data):
 # @app.
 # @app.
 # @app.
-# @app.
 # ast.literal_eval(request.body.read().decode('utf8'))
-# ud1 = (data['user_name'], data['password'],
-#        data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_id'])
+# ud1 = (data['password'],
+#        data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_name'])
 # cur.execute(
 #     '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
 #
@@ -993,6 +992,50 @@ def getSearchedDiseases():
                      for row in cur]
                 b = {"success": True, "status": True,
                      "message": "Disease List", "result": str(d)}
+                response.body = str(b)
+            except Exception as e:
+                print(e)
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+
+    except KeyError:
+        response.status = 409
+        return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+    response.headers['Content-Type'] = 'application/json'
+    rb = ast.literal_eval(response.body)
+    result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
+    if result is not None:
+        rb['result'] = result
+    return rb
+
+
+@app.post('/getTestResults')
+@enable_cors
+def getTestResults():
+    try:
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
+        if data is None or data == {}:
+            raise ValueError
+        elif 'user_id' in data.keys():
+            try:
+                cur.execute('''select result_id from public.user_test_results where user_id=%s''', (data['user_id'],))
+                a = cur.fetchall()
+                res = []
+                for i in a:
+                    c = col.find_one({'_id': ObjectId(i[0])})
+                    d = c.pop('_id', None)
+                    print(d)
+                    res.append(c)
+                b = {"success": True, "status": True,
+                     "message": "Test Results List", "result": str(res)}
                 response.body = str(b)
             except Exception as e:
                 print(e)
