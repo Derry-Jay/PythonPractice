@@ -2,7 +2,6 @@
   <form @submit="register" id="register">
     <label><span>*</span>User Name</label>
     <input v-model="body.user_name" class="box1 border1"/>
-    <!-- <p v-if="body.user_name.length<3">{{ username.error.message }}</p> -->
     <br />
     <label><span>*</span>User Type</label>
     <Select v-model="body.user_type" class="form-control">
@@ -126,7 +125,6 @@
     <br />
     <label><span>*</span>Password</label>
     <input v-model="body.password" type="password" class="box1 border2"/>
-    <!-- <p v-if="password.error">{{ password.error.message }}</p> -->
     <br />
     <button type="submit">Submit</button>
   </form>

@@ -1,1 +1,1 @@
-from operations import calculate, latlong, upload
+from operations import calculate, latlong, bayesian_network

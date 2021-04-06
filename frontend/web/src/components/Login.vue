@@ -1,19 +1,24 @@
 <template>
   <form @submit="login" id="login">
+    <label for="user_email"><span>*</span>Email</label>
     <input
         v-model="body.user_email"
         class="box1 border1"
         type="email"
       /><br/>
+    <!-- <p v-if="body.user_email.length<3">{{ username.error.message }}</p> -->
+    <label for="password"><span>*</span>Password</label>
     <input
         v-model="body.password"
         type="password"
         class="box1 border2"
       /><br/>
-    <button type="submit">Submit</button>
+    <!-- <p v-if="body.password.error">{{ password.error.message }}</p> -->
+    <ejs-button cssClass='e-flat'>Flat</ejs-button>
   </form>
 </template>
 <script type="text/javascript">
+import router from '../router'
 export default {
   data () {
     return {
@@ -58,8 +63,17 @@ export default {
         const data = await res.json()
         this.data = data
         console.log(this.data)
+        if (data.success && data.status) {
+          console.log('++++++++++++++')
+          console.log('hi')
+          const passData = {'name': 'Home'}
+          router.push(passData)
+        } else {
+          console.log('hi')
+        }
       } else {
-        console.log('hi')
+        console.log('-------------')
+        console.log('bye')
       }
     }
   }
@@ -68,6 +82,7 @@ export default {
 <style scoped>
 #login{
   background-color: blue;
+  background-image: "";
 }
 </style>
 <!--<style scoped src="../assets/css/menu.css"></style>

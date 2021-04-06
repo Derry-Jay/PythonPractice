@@ -3,7 +3,7 @@
     <div id="section-1">
       <header class="main_h">
         <div class="menufix"> <a class="logo" href="index.html"><img src="images/logo.png" alt="Hello"></a>
-          <div class="mobile-toggle"> <span></span> <span></span> </div>
+          <div class="mobile-toggle">  </div>
           <nav>
             <ul>
               <li class="out active animsition-link"><router-link to="/home">HOME</router-link></li>
