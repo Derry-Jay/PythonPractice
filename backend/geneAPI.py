@@ -7,10 +7,9 @@ import pymongo as pm
 import psycopg2 as pypg
 from botocore.config import Config
 from operations.latlong import LatLong
-from bottle import Bottle, request, response, post, get, put, delete, run
 from truckpad.bottle.cors import CorsPlugin, enable_cors
-cqs = '''select count(user_id) from public.registered_users where '''
-snt = '''select user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type from public.registered_users'''
+from bottle import Bottle, request, response, post, get, put, delete, run
+from bson.objectid import ObjectId
 app = Bottle(__name__)
 emailpattern = re.compile(r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$')
 passwordpattern = re.compile(
@@ -29,10 +28,74 @@ s3 = boto3.resource('s3')
 for bucket in s3.buckets.all():
     print(bucket.name)
 
-# and user_name and user_mail= and password=
-#
-# cur.execute()
-# cur.execute('''insert into  values(%s,%s,%s,%s,%s)''',())
+
+def generateUpdateStatement(tableName, data):
+    snt = '''update ''' + tableName + ''' set '''
+    k = 0
+    pk = ''
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            snt += (i + '''=%s''')
+            if k < len(data.keys()) - 2:
+                snt += ''', '''
+            else:
+                snt += ''' '''
+            k += 1
+        else:
+            pk = re.search('_id', i).string
+    snt += ('''where ''' + pk + '''=%s''')
+    return snt
+
+
+def generateCountStatement(tableName, data, primaryKey):
+    cqs = '''select count(''' + primaryKey + ''') from ''' + \
+        tableName + ''' where '''
+    k = 0
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            cqs += (i + '''=%s''')
+            if k < len(data.keys()) - 2:
+                cqs += ''' and '''
+            k += 1
+    return cqs
+
+
+def generateInsertStatement(tableName, data):
+    inst = '''insert into ''' + tableName + '''('''
+    k = 0
+    for i in data.keys():
+        inst += i
+        if k < len(data.keys()) - 1:
+            inst += ''', '''
+        else:
+            inst += ''') '''
+        k += 1
+    inst += '''values('''
+    for i in range(len(data.keys())):
+        inst += '''%s'''
+        if i < len(data.keys()) - 1:
+            inst += ''', '''
+        else:
+            inst += ''')'''
+    return inst
+
+
+def getListFromDict(data):
+    g = []
+    pk = ''
+    for i in data.keys():
+        if re.search('_id', i) is None:
+            g.append(data[i])
+        else:
+            pk = re.search('_id', i).string
+    if pk != '':
+        g.append(data[pk])
+    return g
+
+
+# and  and = and
+# cqs+
+# cur.execute('''insert into public.registered_users(user_name, user_mail, pincode, password) values (%s , %s )''', ())
 # cur.execute('''''')
 # cur.execute('''''')
 # @app.delete
@@ -40,9 +103,11 @@ for bucket in s3.buckets.all():
 # @app.
 # @app.
 # @app.
-# @app.
 # ast.literal_eval(request.body.read().decode('utf8'))
-#
+# ud1 = (data['password'],
+#        data['date_of_birth'], data['gender'], data['user_email'], data['mobile_number'], data['user_name'])
+# cur.execute(
+#     '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
 #
 
 
@@ -63,7 +128,7 @@ def login():
                 try:
                     ud = (data['user_email'], data['password'])
                     cur.execute(
-                        cqs + '''user_email=%s and password=%s''', ud)
+                        '''select count(user_id) from public.registered_users where user_email=%s and password=%s''', ud)
                     a = cur.fetchone()[0]
                     if a == 1:
                         try:
@@ -116,26 +181,30 @@ def login():
 def register():
     try:
         try:
-            data = request.json if request.json is not None else ast.literal_eval(request.body.read().decode('utf8'))
+            data = request.json if request.json is not None else ast.literal_eval(
+                request.body.read().decode('utf8'))
         except:
             raise ValueError
         if data is None or data == {}:
             raise ValueError
         try:
-            if 'user_name' in data.keys() and 'password' in data.keys() and 'user_type' in data.keys() and 'user_email' in data.keys() and emailpattern.match(data['user_email']) != None and passwordpattern.match(data['password']) != None:
+            if 'user_name' in data.keys() and 'password' in data.keys() and 'user_type' in data.keys() and 'user_email' in data.keys() and 'pincode' in data.keys() and 'gender' in data.keys() and 'mobile_number' in data.keys() and 'country' in data.keys() and emailpattern.match(data['user_email']) != None and passwordpattern.match(data['password']) != None:
                 ud = (data['user_name'], data['user_type'],
-                      data['user_email'], data['password'])
+                      data['user_email'], data['password'], data['mobile_number'])
                 cur.execute(
-                    cqs+'''user_name=%s and user_type=%s and user_email=%s and password=%s''', ud)
+                    '''select count(user_id) from public.registered_users where user_name=%s and user_type=%s and user_email=%s and password=%s and mobile_number=%s''', ud)
                 if cur.fetchone()[0] == 0:
                     try:
+                        ao = LatLong()
+                        x = ao.getLatLongFromZipCodeAndCountryCode(
+                            data['pincode'], data['country'])
                         user_data = (data['user_name'],
-                                     data['date_of_birth'], data['gender'], data['mobile_number'], data['user_email'], data['pincode'], data['user_type'], data['password'])
+                                     data['user_type'], data['date_of_birth'], data['gender'], data['mobile_number'], data['user_email'], x['latitude'], x['longitude'], data['password'])
                         cur.execute(
-                            '''insert into public.registered_users(user_name, date_of_birth, gender, mobile_number, user_email, pincode, user_type, password) values (%s , %s , %s , %s , %s , %s , %s , %s)''', user_data)
+                            '''insert into public.registered_users(user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude, password) values(%s , %s , %s , %s , %s , %s , %s , %s , %s)''', user_data)
                         con.commit()
                         cur.execute(
-                            '''select user_id from public.registered_users where user_name=%s and date_of_birth=%s and gender=%s and mobile_number=%s and user_email=%s and pincode=%s and user_type=%s and password=%s''', user_data)
+                            '''select user_id from public.registered_users where user_name=%s and user_type=%s and date_of_birth=%s and gender=%s and mobile_number=%s and user_email=%s and latitude=%s and longitude=%s and password=%s''', user_data)
                         b = cur.fetchone()[0]
                         response.body = str(
                             {"success": True, "status": True, "message": "User Registered Successfully", "user_id": b})
@@ -171,8 +240,9 @@ def getUserDetails():
         elif 'user_id' in data.keys():
             try:
                 q = (data['user_id'],)
+                ll = LatLong()
                 cur.execute(
-                    snt + ''' where user_id=%s''', q)
+                    '''select user_name, user_type, date_of_birth, gender, mobile_number, user_email, latitude, longitude from public.registered_users where user_id=%s''', q)
                 dft = [dict(zip([col[0] for col in cur.description], row))
                        for row in cur]
                 if dft is not None and dft != []:
@@ -215,11 +285,11 @@ def updateUserData():
         if data is None or data == {}:
             raise ValueError
         elif 'user_id' in data.keys():
-            ud1 = (data['user_name'], data['password'],
-                   data['date_of_birth'], data['gender'], data['pincode'], data['user_email'], data['mobile_number'], data['user_id'])
+            cqs = generateUpdateStatement(
+                'public.registered_users', data)
+            ud2 = getListFromDict(data)
             try:
-                cur.execute(
-                    '''update public.registered_users set user_name=%s, password=%s, date_of_birth=%s, gender=%s, pincode=%s, user_email=%s, mobile_number=%s where user_id=%s''', ud1)
+                cur.execute(cqs, ud2)
                 con.commit()
                 response.body = str(
                     {"success": True, "status": True, "message": "User Details Updated Successfully"})
@@ -916,11 +986,56 @@ def getSearchedDiseases():
         elif 'pattern' in data.keys():
             try:
                 sdt = ('''%%''' + data['pattern'] + '''%%''',)
-                cur.execute('''select disease_id,disease,disease_image_url from public.diseases where disease like %s''', sdt)
+                cur.execute(
+                    '''select disease_id,disease,disease_image_url from public.diseases where disease like %s''', sdt)
                 d = [dict(zip([col[0] for col in cur.description], row))
                      for row in cur]
                 b = {"success": True, "status": True,
                      "message": "Disease List", "result": str(d)}
+                response.body = str(b)
+            except Exception as e:
+                print(e)
+                error = e.args[0].split('\n')[0]
+                response.body = str(
+                    {"success": False, "status": False, "message": error})
+        else:
+            raise KeyError
+    except ValueError:
+        response.status = 400
+        return
+
+    except KeyError:
+        response.status = 409
+        return
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+    response.headers['Content-Type'] = 'application/json'
+    rb = ast.literal_eval(response.body)
+    result = ast.literal_eval(rb['result']) if 'result' in rb.keys() else None
+    if result is not None:
+        rb['result'] = result
+    return rb
+
+
+@app.post('/getTestResults')
+@enable_cors
+def getTestResults():
+    try:
+        data = request.json if request.json is not None else ast.literal_eval(
+            request.body.read().decode('utf8'))
+        if data is None or data == {}:
+            raise ValueError
+        elif 'user_id' in data.keys():
+            try:
+                cur.execute('''select result_id from public.user_test_results where user_id=%s''', (data['user_id'],))
+                a = cur.fetchall()
+                res = []
+                for i in a:
+                    c = col.find_one({'_id': ObjectId(i[0])})
+                    d = c.pop('_id', None)
+                    print(d)
+                    res.append(c)
+                b = {"success": True, "status": True,
+                     "message": "Test Results List", "result": str(res)}
                 response.body = str(b)
             except Exception as e:
                 print(e)

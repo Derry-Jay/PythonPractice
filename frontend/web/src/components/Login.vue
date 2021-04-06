@@ -1,19 +1,24 @@
 <template>
   <form @submit="login" id="login">
+    <label for="user_email"><span>*</span>Email</label>
     <input
         v-model="body.user_email"
         class="box1 border1"
         type="email"
       /><br/>
+    <!-- <p v-if="body.user_email.length<3">{{ username.error.message }}</p> -->
+    <label for="password"><span>*</span>Password</label>
     <input
         v-model="body.password"
         type="password"
         class="box1 border2"
       /><br/>
-    <button type="submit">Submit</button>
+    <!-- <p v-if="body.password.error">{{ password.error.message }}</p> -->
+    <ejs-button cssClass='e-flat'>Flat</ejs-button>
   </form>
 </template>
 <script type="text/javascript">
+import router from '../router'
 export default {
   data () {
     return {
@@ -21,26 +26,27 @@ export default {
       data: {}
     }
   },
-  // mounted() {
-  //   let script1 = document.createElement("script");
-  //   let script2 = document.createElement("script");
-  //   let script3 = document.createElement("script");
-  //   script1.setAttribute(
-  //     "src",
-  //     "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-  //   );
-  //   script2.setAttribute(
-  //     "src",
-  //     "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-  //   );
-  //   script3.setAttribute(
-  //     "src",derryjey79@gmail.com Goodbye@12
-  //     "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"
-  //   );
-  //   document.head.appendChild(script1);
-  //   document.head.appendChild(script2);
-  //   document.head.appendChild(script3);
-  // },
+  mounted () {
+    let script1 = document.createElement('script')
+    let script2 = document.createElement('script')
+    let script3 = document.createElement('script')
+    script1.setAttribute(
+      'src',
+      'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
+    )
+    script2.setAttribute(
+      'src',
+      'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+    )
+    script3.setAttribute(
+      'src',
+      'http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'
+    )
+    document.head.appendChild(script1)
+    document.head.appendChild(script2)
+    document.head.appendChild(script3)
+  },
+  // derryjey79@gmail.com Goodbye@12
   methods: {
     async login () {
       const request = new Request('http://localhost:8000/login', {
@@ -57,8 +63,17 @@ export default {
         const data = await res.json()
         this.data = data
         console.log(this.data)
+        if (data.success && data.status) {
+          console.log('++++++++++++++')
+          console.log('hi')
+          const passData = {'name': 'Home'}
+          router.push(passData)
+        } else {
+          console.log('hi')
+        }
       } else {
-        console.log('hi')
+        console.log('-------------')
+        console.log('bye')
       }
     }
   }
@@ -67,6 +82,7 @@ export default {
 <style scoped>
 #login{
   background-color: blue;
+  background-image: "";
 }
 </style>
 <!--<style scoped src="../assets/css/menu.css"></style>
