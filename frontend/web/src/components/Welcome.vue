@@ -44,4 +44,13 @@
     </div>
   </div>
 </template>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+import Vue from 'vue'
+import { ButtonPlugin } from '@syncfusion/ej2-vue-buttons'
+import { enableRipple } from '@syncfusion/ej2-base'
+
+enableRipple(true)
+Vue.use(ButtonPlugin)
+
+export default {}
+</script>

@@ -14,11 +14,18 @@
         class="box1 border2"
       /><br/>
     <!-- <p v-if="body.password.error">{{ password.error.message }}</p> -->
-    <ejs-button cssClass='e-flat'>Flat</ejs-button>
+    <ejs-button cssClass='e-success' @click="submit">Login</ejs-button>
+    <ejs-button cssClass='e-info'>Forgot Password?</ejs-button>
   </form>
 </template>
 <script type="text/javascript">
 import router from '../router'
+import Vue from 'vue'
+import { ButtonPlugin } from '@syncfusion/ej2-vue-buttons'
+import { enableRipple } from '@syncfusion/ej2-base'
+
+enableRipple(true)
+Vue.use(ButtonPlugin)
 export default {
   data () {
     return {
@@ -64,15 +71,12 @@ export default {
         this.data = data
         console.log(this.data)
         if (data.success && data.status) {
-          console.log('++++++++++++++')
-          console.log('hi')
           const passData = {'name': 'Home'}
           router.push(passData)
         } else {
           console.log('hi')
         }
       } else {
-        console.log('-------------')
         console.log('bye')
       }
     }
