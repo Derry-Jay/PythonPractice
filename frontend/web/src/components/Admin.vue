@@ -3,7 +3,9 @@
     <div id="section-1">
       <header class="main_h">
         <div class="menufix">
-          <router-link to="/welcome"><img src="images/logo.jpg" alt="Hello"/></router-link>
+          <router-link to="/welcome"
+            ><img src="images/logo.jpg" alt="Hello"
+          /></router-link>
           <div class="mobile-toggle">
             <span></span> <span></span> <span></span>
           </div>
